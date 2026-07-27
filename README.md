@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -40,7 +39,6 @@
                 radial-gradient(circle at 90% 80%, rgba(30, 144, 255, 0.05) 0%, transparent 40%);
         }
 
-        /* Scroll Progress Bar */
         #progress-bar {
             position: fixed;
             top: 0;
@@ -53,12 +51,11 @@
             transition: width 0.1s ease-out;
         }
 
-        /* Header & Hero */
         header {
             position: relative;
             background: linear-gradient(135deg, rgba(15, 19, 34, 0.95), rgba(7, 9, 19, 0.98)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             border-bottom: 3px solid var(--accent);
-            padding: 80px 20px 60px;
+            padding: 70px 20px 50px;
             text-align: center;
             box-shadow: 0 10px 40px rgba(0,0,0,0.6);
         }
@@ -73,25 +70,31 @@
             background: var(--accent);
             color: #000;
             font-family: 'Teko', sans-serif;
-            font-size: 1.7rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            padding: 2px 24px;
+            padding: 2px 20px;
             border-radius: 6px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            box-shadow: 0 0 25px var(--accent-glow);
+            box-shadow: 0 0 20px var(--accent-glow);
         }
 
         h1 {
             font-family: 'Teko', sans-serif;
-            font-size: 5rem;
+            font-size: 4.5rem;
             text-transform: uppercase;
             letter-spacing: 3px;
             color: #fff;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             line-height: 1;
             text-shadow: 0 5px 25px rgba(0,0,0,0.7);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
         }
 
         h1 span {
@@ -100,29 +103,31 @@
         }
 
         .subtitle {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--text-muted);
-            max-width: 750px;
-            margin: 0 auto 40px;
+            max-width: 700px;
+            margin: 0 auto 30px;
         }
 
-        /* Search Bar & Advanced Autocomplete */
         .search-wrapper {
-            max-width: 540px;
-            margin: 0 auto 25px;
+            width: 100%;
+            max-width: 650px;
+            margin: 0 auto 20px;
             position: relative;
+            padding: 0 10px;
         }
 
         .search-input-container {
             position: relative;
             display: flex;
             align-items: center;
+            width: 100%;
         }
 
         .search-icon {
             position: absolute;
             left: 20px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--text-muted);
             pointer-events: none;
             z-index: 3;
@@ -133,10 +138,10 @@
             width: 100%;
             background: var(--bg-secondary);
             border: 2px solid var(--border-color);
-            padding: 16px 20px 16px 52px;
+            padding: 14px 20px 14px 52px;
             border-radius: 12px;
             color: #fff;
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-family: 'Montserrat', sans-serif;
             transition: var(--transition);
             outline: none;
@@ -152,15 +157,14 @@
             color: var(--accent);
         }
 
-        /* Suggestions dropdown list */
         .autocomplete-items {
             position: absolute;
             border: 1px solid var(--border-color);
             border-top: none;
             z-index: 99;
             top: 100%;
-            left: 0;
-            right: 0;
+            left: 10px;
+            right: 10px;
             background: var(--bg-secondary);
             border-radius: 0 0 12px 12px;
             max-height: 250px;
@@ -171,20 +175,20 @@
         }
 
         .autocomplete-items div {
-            padding: 13px 22px;
+            padding: 12px 20px;
             cursor: pointer;
             color: var(--text-main);
             border-bottom: 1px solid var(--border-color);
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        .autocomplete-items div span {
+        .autocomplete-items div small {
             color: var(--text-muted);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             background: rgba(255,255,255,0.05);
             padding: 2px 8px;
             border-radius: 4px;
@@ -197,27 +201,26 @@
         .autocomplete-items div:hover, .autocomplete-items div.autocomplete-active {
             background: var(--bg-card-hover);
             color: var(--accent);
-            padding-left: 26px;
+            padding-left: 24px;
         }
 
-        /* Navigation Tabs */
         .nav-tabs {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             flex-wrap: wrap;
-            margin-top: 25px;
+            margin-top: 20px;
         }
 
         .nav-tab {
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            padding: 10px 20px;
-            border-radius: 10px;
+            padding: 8px 16px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.92rem;
+            font-size: 0.88rem;
             transition: var(--transition);
             text-decoration: none;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -227,102 +230,89 @@
             background: var(--accent);
             color: #000;
             border-color: var(--accent);
-            box-shadow: 0 0 20px var(--accent-glow);
-            transform: translateY(-3px);
+            box-shadow: 0 0 15px var(--accent-glow);
+            transform: translateY(-2px);
         }
 
-        /* Container */
         .container {
             max-width: 1200px;
-            margin: 60px auto;
+            margin: 50px auto;
             padding: 0 20px;
         }
 
         section {
-            margin-bottom: 65px;
-            transition: all 0.4s ease;
+            margin-bottom: 55px;
         }
 
         .section-header {
             display: flex;
             align-items: center;
             gap: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             border-bottom: 2px solid var(--border-color);
-            padding-bottom: 15px;
+            padding-bottom: 12px;
         }
 
         .section-header h2 {
             font-family: 'Teko', sans-serif;
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             letter-spacing: 2px;
             color: #fff;
             text-transform: uppercase;
         }
 
         .section-header .icon {
-            font-size: 2.3rem;
+            font-size: 2rem;
         }
 
-        /* Grid Cards */
         .rules-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 28px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
         }
 
         .rule-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 30px;
+            border-radius: 14px;
+            padding: 25px;
             transition: var(--transition);
-            position: relative;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 6px 25px rgba(0,0,0,0.35);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
 
         .rule-card:hover {
             border-color: var(--accent);
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.55), 0 0 15px rgba(243, 156, 18, 0.1);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.5), 0 0 15px rgba(243, 156, 18, 0.1);
             background: var(--bg-card-hover);
         }
 
-        .rule-card.danger-border {
-            border-left: 6px solid var(--danger);
-        }
-
-        .rule-card.warning-border {
-            border-left: 6px solid var(--accent);
-        }
-
-        .rule-card.info-border {
-            border-left: 6px solid var(--info);
-        }
+        .rule-card.danger-border { border-left: 5px solid var(--danger); }
+        .rule-card.warning-border { border-left: 5px solid var(--accent); }
+        .rule-card.info-border { border-left: 5px solid var(--info); }
 
         .rule-title {
-            font-size: 1.45rem;
+            font-size: 1.35rem;
             font-weight: 700;
             color: #fff;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .penalty-badge {
-            font-size: 0.75rem;
-            padding: 5px 12px;
+            font-size: 0.72rem;
+            padding: 4px 10px;
             border-radius: 6px;
             font-weight: 700;
             text-transform: uppercase;
             white-space: nowrap;
-            letter-spacing: 0.5px;
         }
 
         .penalty-badge.warning {
@@ -338,9 +328,9 @@
         }
 
         .rule-desc {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-muted);
-            line-height: 1.75;
+            line-height: 1.7;
         }
 
         .rule-desc strong {
@@ -348,73 +338,70 @@
             font-weight: 600;
         }
 
-        /* Ban Styles Grid */
         .bans-container {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 6px 25px rgba(0,0,0,0.35);
+            border-radius: 14px;
+            padding: 30px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
 
         .bans-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 18px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
         }
 
         .ban-item {
             background: rgba(255, 71, 87, 0.08);
             border: 1px solid rgba(255, 71, 87, 0.25);
-            border-radius: 12px;
-            padding: 16px 20px;
+            border-radius: 10px;
+            padding: 14px 18px;
             font-weight: 600;
             color: #ff8080;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             transition: var(--transition);
         }
 
         .ban-item:hover {
             background: rgba(255, 71, 87, 0.18);
             border-color: var(--danger);
-            transform: translateX(6px);
-            box-shadow: 0 0 15px var(--danger-glow);
+            transform: translateX(4px);
+            box-shadow: 0 0 12px var(--danger-glow);
         }
 
         .combat-rules-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 28px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
 
-        /* No Results Message */
         #noResults {
             display: none;
             text-align: center;
             color: var(--text-muted);
-            font-size: 1.3rem;
-            padding: 50px;
+            font-size: 1.2rem;
+            padding: 40px;
             background: var(--bg-card);
-            border-radius: 16px;
+            border-radius: 14px;
             border: 1px solid var(--border-color);
             margin-top: 20px;
         }
 
-        /* Scroll to Top Button */
         #scrollTopBtn {
             position: fixed;
-            bottom: 35px;
-            right: 35px;
+            bottom: 30px;
+            right: 30px;
             background: var(--accent);
             color: #000;
             border: none;
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             cursor: pointer;
             display: none;
             align-items: center;
@@ -426,34 +413,23 @@
         }
 
         #scrollTopBtn:hover {
-            transform: scale(1.15) translateY(-3px);
+            transform: scale(1.1) translateY(-3px);
             background: #ffa502;
-            box-shadow: 0 10px 25px var(--accent-glow);
         }
 
-        /* Footer */
         footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
             text-align: center;
-            padding: 40px 20px;
+            padding: 30px 20px;
             color: var(--text-muted);
-            font-size: 0.98rem;
-            margin-top: 80px;
+            font-size: 0.95rem;
+            margin-top: 70px;
         }
 
         footer span {
             color: var(--accent);
             font-weight: 700;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .rule-card {
-            animation: fadeIn 0.5s ease forwards;
         }
     </style>
 </head>
@@ -470,7 +446,7 @@
             <div class="search-wrapper" autocomplete="off">
                 <div class="search-input-container">
                     <span class="search-icon">🔍</span>
-                    <input type="text" id="searchInput" class="search-input" placeholder="Поиск по правилам (например: фишинг, ульта, деш)..." oninput="handleSearchInput()" onkeydown="handleSearchKeydown(event)">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Поиск по правилам (например: фишинг, ульта)..." oninput="handleSearchInput()" onkeydown="handleSearchKeydown(event)">
                 </div>
                 <div id="autocompleteList" class="autocomplete-items"></div>
             </div>
@@ -491,7 +467,6 @@
 
         <div id="noResults">Ничего не найдено по вашему запросу 😕 Попробуйте изменить ключевые слова.</div>
 
-        <!-- СЕКЦИЯ 1: ПД ФИШИНГ -->
         <section id="pd" class="rule-section">
             <div class="section-header">
                 <span class="icon">⏱️</span>
@@ -505,7 +480,7 @@
                             <span class="penalty-badge warning">Фол / Предупреждение</span>
                         </div>
                         <div class="rule-desc">
-                            Это когда игрок намеренно перестает бить или взаимодействовать, чтобы спровоцировать идеальное уклонение. Разрешено сделать два уклона подряд только в том случае, если вас поймали на стагеринге или вы находитесь в безвыходном положении под градом спамящих комбо (особенно актуально против медленных стилей).
+                            Это когда игрок намеренно перестает бить или взаимодействовать, чтобы спровоцировать идеальное уклонение. Разрешено сделать два уклона подряд только в том случае, если вас поймали на стагеринге или вы находитесь в безвыходном положении под градом спамящих комбо.
                         </div>
                     </div>
                 </div>
@@ -517,7 +492,7 @@
                             <span class="penalty-badge warning">Злоупотребление = Фол</span>
                         </div>
                         <div class="rule-desc">
-                            Ожидать удара разрешено максимум <strong>2.5 секунды</strong>. Незначительный выход за рамки карается предупреждением, а систематическое злоупотребление — фолом. Аналогичное правило действует и на демпси ролл. Таймер сбрасывается попыткой удара с получением контрудара, атакой или способностями возврата в нейтраль. Использование эмоций (кроме старта раунда) приравнивается к попытке ПД.
+                            Ожидать удара разрешено максимум <strong>2.5 секунды</strong>. Незначительный выход за рамки карается предупреждением, а систематическое злоупотребление — фолом. Аналогичное правило действует и на демпси ролл. Использование эмоций приравнивается к попытке ПД.
                         </div>
                     </div>
                 </div>
@@ -529,14 +504,13 @@
                             <span class="penalty-badge warning">Фол обоим</span>
                         </div>
                         <div class="rule-desc">
-                            Если после завершения таймера ПД-порога оба игрока намеренно продолжают держаться на дистанции, включается дополнительный 3-секундный счёт. Если никто из бойцов не начинает сближение за это время, фол присуждается обоим участникам матча. Против демпси разрешено фишить, но запрещено уходить назад (с-кейтить). Против шотгана можно использовать бекдеш на способность, если перед этим был совершен обычный бекдеш.
+                            Если после завершения таймера ПД-порога оба игрока намеренно продолжают держаться на дистанции, включается дополнительный 3-секундный счёт. Если никто из бойцов не начинает сближение за это время, фол присуждается обоим участникам матча.
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- СЕКЦИЯ 2: БАГОЮЗ -->
         <section id="bugs" class="rule-section">
             <div class="section-header">
                 <span class="icon">🚫</span>
@@ -550,7 +524,7 @@
                             <span class="penalty-badge danger">Дисквалификация</span>
                         </div>
                         <div class="rule-desc">
-                            Ситуация, когда в вас летит ульта и по идее должна нанести урон, но игрок прожимает блок в специфический тайминг, из-за чего ультимейт «сжирается» без последствий. Намеренное использование карается вылетом из реальной жизни / жестким баном.
+                            Ситуация, когда в вас летит ульта и по идее должна нанести урон, но игрок прожимает блок в специфический тайминг, из-за чего ультимейт «сжирается» без последствий.
                         </div>
                     </div>
                 </div>
@@ -562,7 +536,7 @@
                             <span class="penalty-badge warning">Предупреждение ➔ Фол</span>
                         </div>
                         <div class="rule-desc">
-                            Нарушением считается момент, когда удар M1 фиксируется в серии, но искусственно задерживается, становится неуклоняемым и притягивает оппонента обратно вопреки кадрам уклонения. <em>Примечание:</em> обычный тактический стаггеринг (тычки M1 для перебивания атаки, смены темпа или миксапов) полностью разрешен. Первое нарушение нелегального стаггеринга — устное предупреждение, далее — фолы.
+                            Нарушением считается момент, когда удар M1 фиксируется в серии, но искусственно задерживается, становится неуклоняемым и притягивает оппонента обратно. Обычный тактический стаггеринг полностью разрешен.
                         </div>
                     </div>
                 </div>
@@ -574,14 +548,13 @@
                             <span class="penalty-badge danger">Запрещено</span>
                         </div>
                         <div class="rule-desc">
-                            Использование багов с залипанием атак, от которых физически нельзя увернуться (по типу смешей M2, M1+M2). Данные уязвимости движка уже официально устранены разработчиками игры, но попытки их симуляции или поиска обходов караются регламентом.
+                            Использование багов с залипанием атак, от которых физически нельзя увернуться (по типу смешей M2, M1+M2). Попытки их симуляции или поиска обходов караются регламентом.
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- СЕКЦИЯ 3: МЕДЛЕННЫЕ КОМБО М1 -->
         <section id="combos" class="rule-section">
             <div class="section-header">
                 <span class="icon">🐢</span>
@@ -595,7 +568,7 @@
                             <span class="penalty-badge warning">Лимит: 1 серия</span>
                         </div>
                         <div class="rule-desc">
-                            Медленные удары M1 разрешены <strong>только после того, как игрок попал под вражеский ультимейт</strong>. Их категорически запрещено использовать после использования способностей (Focus, Stampede и т.д.). Кроме того, слоу клики разрешено применять ровно для <strong>ОДНОЙ СЕРИИ УДАРОВ</strong> — большее количество расценивается как нарушение и ведет к фолу.
+                            Медленные удары M1 разрешены <strong>только после того, как игрок попал под вражеский ультимейт</strong>. Их запрещено использовать после способностей и применять более чем для <strong>ОДНОЙ СЕРИИ УДАРОВ</strong>.
                         </div>
                     </div>
                 </div>
@@ -607,14 +580,13 @@
                             <span class="penalty-badge warning">Баланс стилей</span>
                         </div>
                         <div class="rule-desc">
-                            Существуют индивидуальные ограничения по стилям: бойцам со стилем «Крюк» запрещено использовать слоу клики даже после ультимейта соперника. В то же время, после ультимейта стиля «Айрон Фист» бойцу разрешено выполнить ровно <strong>ДВА КОМБО</strong> слоу кликов.
+                            Бойцам со стилем «Крюк» запрещено использовать слоу клики даже после ультимейта соперника. После ультимейта стиля «Айрон Фист» разрешено выполнить ровно <strong>ДВА КОМБО</strong> слоу кликов.
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- СЕКЦИЯ 4: С-КЕЙТИНГ И БЕКДЕШИ -->
         <section id="skating" class="rule-section">
             <div class="section-header">
                 <span class="icon">⛸️</span>
@@ -628,7 +600,7 @@
                             <span class="penalty-badge warning">Фол</span>
                         </div>
                         <div class="rule-desc">
-                            С-кейтинг — это отход назад от противника с зажатой клавишей S (направление джойстика назад). Допускается сразу после успешного попадания удара или комбо по сопернику. Однако, если вы идете назад и пассивно ничего не делаете, пропуская два действия оппонента подряд — вы получаете фол. Аналогичное правило применяется к бекдешам.
+                            С-кейтинг — это отход назад от противника с зажатой клавишей S. Допускается после успешного удара. Если вы идете назад и пассивно ничего не делаете, пропуская два действия оппонента — фол.
                         </div>
                     </div>
                 </div>
@@ -640,14 +612,13 @@
                             <span class="penalty-badge warning">Строгие лимиты</span>
                         </div>
                         <div class="rule-desc">
-                            Понятие делится на две категории: <strong>1)</strong> Два деша подряд для спидстеров, используемые для уклонения от финтов — строго запрещены, дается фол. <strong>2)</strong> Два деша после двух совершенных атак — разрешены. Тройной деш (трипл деш) запрещен полностью в любых ситуациях.
+                            Два деша подряд для спидстеров (для уклонения от финтов) строго запрещены. Два деша после двух совершенных атак — разрешены. Тройной деш запрещен полностью.
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- СЕКЦИЯ 5: ПОЛЬЗОВАТЕЛЬСКИЕ ЗВУКИ И ИЗОБРАЖЕНИЯ -->
         <section id="audio" class="rule-section">
             <div class="section-header">
                 <span class="icon">🎨</span>
@@ -657,11 +628,11 @@
                 <div class="rule-card warning-border searchable" data-keywords="звуки пд отвлекающие эффекты судья кастомные">
                     <div>
                         <div class="rule-title">
-                            Звуки ПД и отвлекающие эффекты
+                            Звуки ПД и эффекты
                             <span class="penalty-badge warning">На усмотрение судьи</span>
                         </div>
                         <div class="rule-desc">
-                            Использование кастомных звуковых эффектов идеального уклонения (ПД) остается на усмотрение самих игроков. Тем не менее, рефери может в любой момент запросить их удаление, если сочтет, что они создают нечестное преимущество за счет сильного отвлечения внимания оппонента.
+                            Использование кастомных звуков ПД разрешено, но рефери может запросить их удаление, если они сильно отвлекают оппонента.
                         </div>
                     </div>
                 </div>
@@ -673,14 +644,13 @@
                             <span class="penalty-badge danger">Запрещено</span>
                         </div>
                         <div class="rule-desc">
-                            Пользовательские звуковые эффекты контрударов (каунтер), а также любые кастомные изображения строго запрещены регламентом и подлежат обязательному удалению перед началом официальных матчей. <em>Исключение:</em> кастомные звуки и изображения для ультимативных способностей (ульт) полностью разрешены.
+                            Пользовательские звуки контрударов и любые кастомные изображения запрещены. <em>Исключение:</em> кастомные звуки и изображения для ультимативных способностей разрешены.
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- СЕКЦИЯ 6: ПРАВИЛА ПРОВЕДЕНИЯ БОЕВ U.C.L -->
         <section id="combat" class="rule-section">
             <div class="section-header">
                 <span class="icon">🏟️</span>
@@ -690,58 +660,47 @@
                 <div class="rule-card info-border searchable" data-keywords="проблемы со связью вылеты 5 минут тко нокаут">
                     <div>
                         <div class="rule-title">🌐 Проблемы со связью и вылеты</div>
-                        <div class="rule-desc">
-                            При обрыве соединения или вылете игры посреди матча включается таймер: у бойца есть ровно <strong>5 минут</strong> на возвращение. Если дедлайн нарушен — поединок аннулируется либо присуждается технический нокаут (ТКО) по решению рефери.
-                        </div>
+                        <div class="rule-desc">При обрыве связи у бойца есть ровно <strong>5 минут</strong> на возвращение, иначе присуждается технический нокаут (ТКО).</div>
                     </div>
                 </div>
 
                 <div class="rule-card info-border searchable" data-keywords="авторитет рефери судья вердикт ошибки">
                     <div>
                         <div class="rule-title">⚖️ Авторитет рефери</div>
-                        <div class="rule-desc">
-                            Вердикт судьи на ринге непререкаем и не обсуждается по ходу боя. Однако зафиксированные явные и грубые судейские ошибки после проверки будут строго караться администрацией лиги.
-                        </div>
+                        <div class="rule-desc">Вердикт судьи на ринге непререкаем. Грубые судейские ошибки наказываются администрацией лиги после проверок.</div>
                     </div>
                 </div>
 
                 <div class="rule-card info-border searchable" data-keywords="суточный лимит поединки 3 боя календарные сутки">
                     <div>
                         <div class="rule-title">📅 Суточный лимит на поединки</div>
-                        <div class="rule-desc">
-                            Во избежание выгорания бойцов действует жесткий соревновательный лимит: один спортсмен имеет право провести <strong>не более 3 боёв за календарные сутки</strong>.
-                        </div>
+                        <div class="rule-desc">Один спортсмен имеет право провести <strong>не более 3 боёв за календарные сутки</strong>.</div>
                     </div>
                 </div>
 
                 <div class="rule-card info-border searchable" data-keywords="дивизионы переходы пояс защита">
                     <div>
                         <div class="rule-title">📈 Дивизионы и переходы</div>
-                        <div class="rule-desc">
-                            При аномальном доминировании администрация может принудительно поднять бойца выше. В стандартном порядке для легального перехода в другую лигу необходимо завоевать пояс и провести минимум 1 успешную защиту.
-                        </div>
+                        <div class="rule-desc">Для легального перехода в другую лигу необходимо завоевать пояс и провести минимум 1 успешную защиту.</div>
                     </div>
                 </div>
 
                 <div class="rule-card info-border searchable" data-keywords="право вызов чемпион топ-5 топ-1 рейтинг">
                     <div>
                         <div class="rule-title">👑 Право на вызов чемпиона</div>
-                        <div class="rule-desc">
-                            Бросить вызов действующему чемпиону разрешено только бойцам из первой пятерки (Топ-5) рейтинга. Лидер таблицы (Топ-1) обладает эксклюзивным правом: чемпион обязан принять его вызов безоговорочно.
-                        </div>
+                        <div class="rule-desc">Бросить вызов чемпиону могут бойцы из Топ-5. Лидер рейтинга (Топ-1) имеет гарантированное право на бой.</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- СЕКЦИЯ 7: БАН СТИЛИ -->
         <section id="bans" class="rule-section">
             <div class="section-header">
                 <span class="icon">❌</span>
                 <h2>7. Список бан-стилей</h2>
             </div>
             <div class="bans-container">
-                <p style="color: var(--text-muted); margin-bottom: 15px;">К использованию на официальных боях U.C.L категорически запрещены следующие стили (включая все их шайни/блестящие вариации и эксклюзивные версии):</p>
+                <p style="color: var(--text-muted); margin-bottom: 15px;">К использованию на официальных боях U.C.L категорически запрещены следующие стили (включая все их вариации):</p>
                 <div class="bans-grid">
                     <div class="ban-item searchable" data-keywords="слаггер slugger бан-стиль">🥊 Слаггер (Slugger)</div>
                     <div class="ban-item searchable" data-keywords="хоук hawk бан-стиль">🦅 Хоук (Hawk)</div>
@@ -841,7 +800,7 @@
                     item.title.toLowerCase().includes(inputVal) || item.category.toLowerCase().includes(inputVal)
                 );
 
-                matches.slice(0, 6).forEach((match, index) => {
+                matches.slice(0, 6).forEach((match) => {
                     let div = document.createElement('div');
                     div.innerHTML = `<span>${match.title}</span> <small>${match.category}</small>`;
                     div.onclick = function() {
@@ -854,18 +813,17 @@
             }
         }
 
-        // Управление клавиатурой в выпадающем списке (стрелочки вверх/вниз и Enter)
         function handleSearchKeydown(e) {
             let listContainer = document.getElementById('autocompleteList');
             let items = listContainer ? listContainer.getElementsByTagName('div') : [];
 
-            if (e.keyCode === 40) { // Стрелка вниз
+            if (e.keyCode === 40) {
                 currentFocus++;
                 addActive(items);
-            } else if (e.keyCode === 38) { // Стрелка вверх
+            } else if (e.keyCode === 38) {
                 currentFocus--;
                 addActive(items);
-            } else if (e.keyCode === 13) { // Enter
+            } else if (e.keyCode === 13) {
                 e.preventDefault();
                 if (currentFocus > -1 && items[currentFocus]) {
                     items[currentFocus].click();
@@ -912,6 +870,5 @@
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
     </script>
-
 </body>
 </html>

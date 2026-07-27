@@ -12,15 +12,15 @@
             --bg-card: #151a2e;
             --bg-card-hover: #1c233d;
             --accent: #f39c12;
-            --accent-glow: rgba(243, 156, 18, 0.35);
+            --accent-glow: rgba(243, 156, 18, 0.4);
             --danger: #ff4757;
-            --danger-glow: rgba(255, 71, 87, 0.35);
+            --danger-glow: rgba(255, 71, 87, 0.4);
             --success: #2ed573;
             --info: #1e90ff;
             --text-main: #f1f5f9;
             --text-muted: #8b9bb4;
             --border-color: #232d4a;
-            --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -36,8 +36,8 @@
             line-height: 1.7;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(243, 156, 18, 0.04) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(30, 144, 255, 0.04) 0%, transparent 40%);
+                radial-gradient(circle at 10% 20%, rgba(243, 156, 18, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(30, 144, 255, 0.05) 0%, transparent 40%);
         }
 
         /* Scroll Progress Bar */
@@ -49,7 +49,7 @@
             background: var(--accent);
             width: 0%;
             z-index: 1000;
-            box-shadow: 0 0 10px var(--accent);
+            box-shadow: 0 0 12px var(--accent);
             transition: width 0.1s ease-out;
         }
 
@@ -58,9 +58,9 @@
             position: relative;
             background: linear-gradient(135deg, rgba(15, 19, 34, 0.95), rgba(7, 9, 19, 0.98)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             border-bottom: 3px solid var(--accent);
-            padding: 70px 20px 50px;
+            padding: 80px 20px 60px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
         }
 
         .hero-container {
@@ -73,42 +73,42 @@
             background: var(--accent);
             color: #000;
             font-family: 'Teko', sans-serif;
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             font-weight: 700;
-            padding: 2px 22px;
+            padding: 2px 24px;
             border-radius: 6px;
             margin-bottom: 15px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            box-shadow: 0 0 20px var(--accent-glow);
+            box-shadow: 0 0 25px var(--accent-glow);
         }
 
         h1 {
             font-family: 'Teko', sans-serif;
-            font-size: 4.8rem;
+            font-size: 5rem;
             text-transform: uppercase;
             letter-spacing: 3px;
             color: #fff;
             margin-bottom: 10px;
             line-height: 1;
-            text-shadow: 0 5px 20px rgba(0,0,0,0.6);
+            text-shadow: 0 5px 25px rgba(0,0,0,0.7);
         }
 
         h1 span {
             color: var(--accent);
-            text-shadow: 0 0 25px var(--accent-glow);
+            text-shadow: 0 0 30px var(--accent-glow);
         }
 
         .subtitle {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             color: var(--text-muted);
             max-width: 750px;
-            margin: 0 auto 35px;
+            margin: 0 auto 40px;
         }
 
-        /* Search Bar & Autocomplete Container */
+        /* Search Bar & Advanced Autocomplete */
         .search-wrapper {
-            max-width: 500px;
+            max-width: 540px;
             margin: 0 auto 25px;
             position: relative;
         }
@@ -121,29 +121,35 @@
 
         .search-icon {
             position: absolute;
-            left: 18px;
-            font-size: 1.1rem;
+            left: 20px;
+            font-size: 1.2rem;
             color: var(--text-muted);
             pointer-events: none;
-            z-index: 2;
+            z-index: 3;
+            transition: var(--transition);
         }
 
         .search-input {
             width: 100%;
             background: var(--bg-secondary);
             border: 2px solid var(--border-color);
-            padding: 14px 20px 14px 48px;
-            border-radius: 10px;
+            padding: 16px 20px 16px 52px;
+            border-radius: 12px;
             color: #fff;
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-family: 'Montserrat', sans-serif;
             transition: var(--transition);
             outline: none;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
         }
 
         .search-input:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 15px var(--accent-glow);
+            box-shadow: 0 0 20px var(--accent-glow), inset 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .search-input:focus + .search-icon {
+            color: var(--accent);
         }
 
         /* Suggestions dropdown list */
@@ -156,71 +162,85 @@
             left: 0;
             right: 0;
             background: var(--bg-secondary);
-            border-radius: 0 0 10px 10px;
-            max-height: 200px;
+            border-radius: 0 0 12px 12px;
+            max-height: 250px;
             overflow-y: auto;
             text-align: left;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
         }
 
         .autocomplete-items div {
-            padding: 12px 20px;
+            padding: 13px 22px;
             cursor: pointer;
             color: var(--text-main);
             border-bottom: 1px solid var(--border-color);
             font-size: 0.95rem;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .autocomplete-items div span {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            background: rgba(255,255,255,0.05);
+            padding: 2px 8px;
+            border-radius: 4px;
         }
 
         .autocomplete-items div:last-child {
             border-bottom: none;
         }
 
-        .autocomplete-items div:hover {
+        .autocomplete-items div:hover, .autocomplete-items div.autocomplete-active {
             background: var(--bg-card-hover);
             color: var(--accent);
-            padding-left: 25px;
+            padding-left: 26px;
         }
 
         /* Navigation Tabs */
         .nav-tabs {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .nav-tab {
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            padding: 10px 18px;
-            border-radius: 8px;
+            padding: 10px 20px;
+            border-radius: 10px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             transition: var(--transition);
             text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
         .nav-tab:hover, .nav-tab.active {
             background: var(--accent);
             color: #000;
             border-color: var(--accent);
-            box-shadow: 0 0 15px var(--accent-glow);
-            transform: translateY(-2px);
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: translateY(-3px);
         }
 
         /* Container */
         .container {
             max-width: 1200px;
-            margin: 50px auto;
+            margin: 60px auto;
             padding: 0 20px;
         }
 
         section {
-            margin-bottom: 60px;
+            margin-bottom: 65px;
+            transition: all 0.4s ease;
         }
 
         .section-header {
@@ -234,61 +254,61 @@
 
         .section-header h2 {
             font-family: 'Teko', sans-serif;
-            font-size: 2.7rem;
+            font-size: 2.8rem;
             letter-spacing: 2px;
             color: #fff;
             text-transform: uppercase;
         }
 
         .section-header .icon {
-            font-size: 2.2rem;
+            font-size: 2.3rem;
         }
 
         /* Grid Cards */
         .rules-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 25px;
+            gap: 28px;
         }
 
         .rule-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 28px;
+            border-radius: 16px;
+            padding: 30px;
             transition: var(--transition);
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.35);
         }
 
         .rule-card:hover {
             border-color: var(--accent);
-            transform: translateY(-6px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.55), 0 0 15px rgba(243, 156, 18, 0.1);
             background: var(--bg-card-hover);
         }
 
         .rule-card.danger-border {
-            border-left: 5px solid var(--danger);
+            border-left: 6px solid var(--danger);
         }
 
         .rule-card.warning-border {
-            border-left: 5px solid var(--accent);
+            border-left: 6px solid var(--accent);
         }
 
         .rule-card.info-border {
-            border-left: 5px solid var(--info);
+            border-left: 6px solid var(--info);
         }
 
         .rule-title {
-            font-size: 1.4rem;
+            font-size: 1.45rem;
             font-weight: 700;
             color: #fff;
-            margin-bottom: 14px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -297,7 +317,7 @@
 
         .penalty-badge {
             font-size: 0.75rem;
-            padding: 4px 10px;
+            padding: 5px 12px;
             border-radius: 6px;
             font-weight: 700;
             text-transform: uppercase;
@@ -318,9 +338,9 @@
         }
 
         .rule-desc {
-            font-size: 0.98rem;
+            font-size: 1rem;
             color: var(--text-muted);
-            line-height: 1.7;
+            line-height: 1.75;
         }
 
         .rule-desc strong {
@@ -332,23 +352,23 @@
         .bans-container {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 35px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.35);
         }
 
         .bans-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 15px;
+            gap: 18px;
             margin-top: 20px;
         }
 
         .ban-item {
             background: rgba(255, 71, 87, 0.08);
             border: 1px solid rgba(255, 71, 87, 0.25);
-            border-radius: 10px;
-            padding: 14px 18px;
+            border-radius: 12px;
+            padding: 16px 20px;
             font-weight: 600;
             color: #ff8080;
             display: flex;
@@ -360,13 +380,14 @@
         .ban-item:hover {
             background: rgba(255, 71, 87, 0.18);
             border-color: var(--danger);
-            transform: translateX(4px);
+            transform: translateX(6px);
+            box-shadow: 0 0 15px var(--danger-glow);
         }
 
         .combat-rules-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 25px;
+            gap: 28px;
         }
 
         /* No Results Message */
@@ -374,35 +395,40 @@
             display: none;
             text-align: center;
             color: var(--text-muted);
-            font-size: 1.2rem;
-            padding: 40px;
+            font-size: 1.3rem;
+            padding: 50px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            margin-top: 20px;
         }
 
         /* Scroll to Top Button */
         #scrollTopBtn {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 35px;
+            right: 35px;
             background: var(--accent);
             color: #000;
             border: none;
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             cursor: pointer;
             display: none;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 15px var(--accent-glow);
+            box-shadow: 0 6px 20px var(--accent-glow);
             transition: var(--transition);
             z-index: 999;
             font-weight: 900;
         }
 
         #scrollTopBtn:hover {
-            transform: scale(1.1);
+            transform: scale(1.15) translateY(-3px);
             background: #ffa502;
+            box-shadow: 0 10px 25px var(--accent-glow);
         }
 
         /* Footer */
@@ -410,10 +436,10 @@
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
             text-align: center;
-            padding: 35px 20px;
+            padding: 40px 20px;
             color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-top: 70px;
+            font-size: 0.98rem;
+            margin-top: 80px;
         }
 
         footer span {
@@ -422,12 +448,12 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .rule-card {
-            animation: fadeIn 0.6s ease forwards;
+            animation: fadeIn 0.5s ease forwards;
         }
     </style>
 </head>
@@ -444,7 +470,7 @@
             <div class="search-wrapper" autocomplete="off">
                 <div class="search-input-container">
                     <span class="search-icon">🔍</span>
-                    <input type="text" id="searchInput" class="search-input" placeholder="Поиск по правилам (например: фишинг, ульта, деш)..." oninput="handleSearchInput()">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Поиск по правилам (например: фишинг, ульта, деш)..." oninput="handleSearchInput()" onkeydown="handleSearchKeydown(event)">
                 </div>
                 <div id="autocompleteList" class="autocomplete-items"></div>
             </div>
@@ -463,7 +489,7 @@
 
     <main class="container">
 
-        <div id="noResults">Ничего не найдено по вашему запросу 😕</div>
+        <div id="noResults">Ничего не найдено по вашему запросу 😕 Попробуйте изменить ключевые слова.</div>
 
         <!-- СЕКЦИЯ 1: ПД ФИШИНГ -->
         <section id="pd" class="rule-section">
@@ -740,23 +766,45 @@
     </footer>
 
     <script>
-        // База доступных фраз для умного автодополнения (suggestions)
         const suggestionsData = [
-            "ПД Фишинг", "Таймер порога", "Контроль дистанции",
-            "Парирование ультимейта", "Нелегальный стаггеринг", "Залипающие комбо (Смеши)",
-            "Слоу клики", "Исключения для стилей", "С-кейтинг", "Дабл-деши (ДД)",
-            "Звуки ПД", "Каунтеры и картинки", "Проблемы со связью", "Авторитет рефери",
-            "Суточный лимит", "Дивизионы и переходы", "Вызов чемпиона",
-            "Слаггер", "Хоук", "Свитч Хит", "Хаммер", "Драгонфиш", "Вайт Эш", "Вульф", "Крюк", "Буллет", "Хронос"
+            { title: "ПД Фишинг", category: "Пассивное уклонение" },
+            { title: "Таймер порога", category: "Пассивное уклонение" },
+            { title: "Контроль дистанции", category: "Пассивное уклонение" },
+            { title: "Парирование ультимейта", category: "Багоюз" },
+            { title: "Нелегальный стаггеринг", category: "Багоюз" },
+            { title: "Залипающие комбо (Смеши)", category: "Багоюз" },
+            { title: "Слоу клики", category: "Медленные M1" },
+            { title: "Исключения для стилей", category: "Медленные M1" },
+            { title: "С-кейтинг", category: "С-кейтинг" },
+            { title: "Дабл-деши (ДД)", category: "С-кейтинг" },
+            { title: "Звуки ПД", category: "Кастомные звуки" },
+            { title: "Каунтеры и картинки", category: "Кастомные звуки" },
+            { title: "Проблемы со связью", category: "Регламент боёв" },
+            { title: "Авторитет рефери", category: "Регламент боёв" },
+            { title: "Суточный лимит", category: "Регламент боёв" },
+            { title: "Дивизионы и переходы", category: "Регламент боёв" },
+            { title: "Вызов чемпиона", category: "Регламент боёв" },
+            { title: "Слаггер", category: "Бан-стили" },
+            { title: "Хоук", category: "Бан-стили" },
+            { title: "Свитч Хит", category: "Бан-стили" },
+            { title: "Хаммер", category: "Бан-стили" },
+            { title: "Драгонфиш", category: "Бан-стили" },
+            { title: "Вайт Эш", category: "Бан-стили" },
+            { title: "Вульф", category: "Бан-стили" },
+            { title: "Крюк", category: "Бан-стили" },
+            { title: "Буллет", category: "Бан-стили" },
+            { title: "Хронос", category: "Бан-стили" }
         ];
+
+        let currentFocus = -1;
 
         function handleSearchInput() {
             let inputField = document.getElementById('searchInput');
             let inputVal = inputField.value.trim().toLowerCase();
             let listContainer = document.getElementById('autocompleteList');
             listContainer.innerHTML = "";
+            currentFocus = -1;
 
-            // Фильтрация карточек на странице (живой поиск)
             let cards = document.querySelectorAll('.searchable');
             let sections = document.querySelectorAll('.rule-section');
             let noResults = document.getElementById('noResults');
@@ -788,14 +836,16 @@
                 noResults.style.display = "none";
             }
 
-            // Выпадающие подсказки автодополнения (Autocomplete)
             if (inputVal.length > 0) {
-                let matches = suggestionsData.filter(item => item.toLowerCase().includes(inputVal));
-                matches.slice(0, 5).forEach(match => {
+                let matches = suggestionsData.filter(item => 
+                    item.title.toLowerCase().includes(inputVal) || item.category.toLowerCase().includes(inputVal)
+                );
+
+                matches.slice(0, 6).forEach((match, index) => {
                     let div = document.createElement('div');
-                    div.innerHTML = match;
+                    div.innerHTML = `<span>${match.title}</span> <small>${match.category}</small>`;
                     div.onclick = function() {
-                        inputField.value = match;
+                        inputField.value = match.title;
                         listContainer.innerHTML = "";
                         handleSearchInput();
                     };
@@ -804,14 +854,46 @@
             }
         }
 
-        // Закрывать подсказки при клике вне поля
+        // Управление клавиатурой в выпадающем списке (стрелочки вверх/вниз и Enter)
+        function handleSearchKeydown(e) {
+            let listContainer = document.getElementById('autocompleteList');
+            let items = listContainer ? listContainer.getElementsByTagName('div') : [];
+
+            if (e.keyCode === 40) { // Стрелка вниз
+                currentFocus++;
+                addActive(items);
+            } else if (e.keyCode === 38) { // Стрелка вверх
+                currentFocus--;
+                addActive(items);
+            } else if (e.keyCode === 13) { // Enter
+                e.preventDefault();
+                if (currentFocus > -1 && items[currentFocus]) {
+                    items[currentFocus].click();
+                }
+            }
+        }
+
+        function addActive(items) {
+            if (!items) return false;
+            removeActive(items);
+            if (currentFocus >= items.length) currentFocus = 0;
+            if (currentFocus < 0) currentFocus = (items.length - 1);
+            items[currentFocus].classList.add("autocomplete-active");
+            items[currentFocus].scrollIntoView({ block: 'nearest' });
+        }
+
+        function removeActive(items) {
+            for (let i = 0; i < items.length; i++) {
+                items[i].classList.remove("autocomplete-active");
+            }
+        }
+
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.search-wrapper')) {
                 document.getElementById('autocompleteList').innerHTML = "";
             }
         });
 
-        // Индикатор чтения и кнопка наверх
         window.onscroll = function() {
             let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;

@@ -55,7 +55,7 @@
             position: relative;
             background: linear-gradient(135deg, rgba(15, 19, 34, 0.95), rgba(7, 9, 19, 0.98)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             border-bottom: 3px solid var(--accent);
-            padding: 70px 15px 50px;
+            padding: 50px 15px 40px;
             text-align: center;
             box-shadow: 0 10px 40px rgba(0,0,0,0.6);
         }
@@ -71,11 +71,11 @@
             background: var(--accent);
             color: #000;
             font-family: 'Teko', sans-serif;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            padding: 2px 20px;
+            padding: 2px 16px;
             border-radius: 6px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             letter-spacing: 2px;
             text-transform: uppercase;
             box-shadow: 0 0 20px var(--accent-glow);
@@ -83,18 +83,21 @@
 
         h1 {
             font-family: 'Teko', sans-serif;
-            font-size: 4.5rem;
+            font-size: 3.5rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             color: #fff;
             margin-bottom: 8px;
             line-height: 1;
             text-shadow: 0 5px 25px rgba(0,0,0,0.7);
         }
 
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
             h1 {
-                font-size: 3rem;
+                font-size: 4.5rem;
+            }
+            header {
+                padding: 70px 15px 50px;
             }
         }
 
@@ -104,10 +107,18 @@
         }
 
         .subtitle {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             color: var(--text-muted);
             max-width: 700px;
-            margin: 0 auto 30px;
+            margin: 0 auto 25px;
+            padding: 0 10px;
+        }
+
+        @media (min-width: 768px) {
+            .subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 30px;
+            }
         }
 
         .search-wrapper {
@@ -115,6 +126,7 @@
             max-width: 540px;
             margin: 0 auto 20px;
             position: relative;
+            padding: 0 10px;
         }
 
         .search-input-container {
@@ -126,7 +138,7 @@
 
         .search-icon {
             position: absolute;
-            left: 18px;
+            left: 26px;
             font-size: 1.1rem;
             color: var(--text-muted);
             pointer-events: none;
@@ -163,8 +175,8 @@
             border-top: none;
             z-index: 99;
             top: 100%;
-            left: 0;
-            right: 0;
+            left: 10px;
+            right: 10px;
             background: var(--bg-secondary);
             border-radius: 0 0 12px 12px;
             max-height: 250px;
@@ -207,20 +219,21 @@
         .nav-tabs {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
-            margin-top: 20px;
+            margin-top: 15px;
+            padding: 0 10px;
         }
 
         .nav-tab {
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            padding: 8px 16px;
+            padding: 6px 14px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.88rem;
+            font-size: 0.82rem;
             transition: var(--transition);
             text-decoration: none;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -236,46 +249,71 @@
 
         .container {
             max-width: 1200px;
-            margin: 50px auto;
+            margin: 30px auto;
             padding: 0 15px;
         }
 
+        @media (min-width: 768px) {
+            .container {
+                margin: 50px auto;
+            }
+        }
+
         section {
-            margin-bottom: 55px;
+            margin-bottom: 45px;
         }
 
         .section-header {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 12px;
+            margin-bottom: 20px;
             border-bottom: 2px solid var(--border-color);
-            padding-bottom: 12px;
+            padding-bottom: 10px;
         }
 
         .section-header h2 {
             font-family: 'Teko', sans-serif;
-            font-size: 2.5rem;
-            letter-spacing: 2px;
+            font-size: 2rem;
+            letter-spacing: 1.5px;
             color: #fff;
             text-transform: uppercase;
         }
 
+        @media (min-width: 768px) {
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+        }
+
         .section-header .icon {
-            font-size: 2rem;
+            font-size: 1.6rem;
+        }
+
+        @media (min-width: 768px) {
+            .section-header .icon {
+                font-size: 2rem;
+            }
         }
 
         .rules-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .rules-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 25px;
+            }
         }
 
         .rule-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 14px;
-            padding: 25px;
+            padding: 20px;
             transition: var(--transition);
             display: flex;
             flex-direction: column;
@@ -283,9 +321,15 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
 
+        @media (min-width: 768px) {
+            .rule-card {
+                padding: 25px;
+            }
+        }
+
         .rule-card:hover {
             border-color: var(--accent);
-            transform: translateY(-6px);
+            transform: translateY(-4px);
             box-shadow: 0 12px 30px rgba(0,0,0,0.5), 0 0 15px rgba(243, 156, 18, 0.1);
             background: var(--bg-card-hover);
         }
@@ -295,10 +339,10 @@
         .rule-card.info-border { border-left: 5px solid var(--info); }
 
         .rule-title {
-            font-size: 1.35rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: #fff;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -307,8 +351,8 @@
         }
 
         .penalty-badge {
-            font-size: 0.72rem;
-            padding: 4px 10px;
+            font-size: 0.7rem;
+            padding: 3px 8px;
             border-radius: 6px;
             font-weight: 700;
             text-transform: uppercase;
@@ -328,9 +372,9 @@
         }
 
         .rule-desc {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
-            line-height: 1.7;
+            line-height: 1.6;
         }
 
         .rule-desc strong {
@@ -342,27 +386,41 @@
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 14px;
-            padding: 30px;
+            padding: 20px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        @media (min-width: 768px) {
+            .bans-container {
+                padding: 30px;
+            }
         }
 
         .bans-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
+            grid-template-columns: 1fr;
+            gap: 12px;
             margin-top: 15px;
+        }
+
+        @media (min-width: 600px) {
+            .bans-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 15px;
+            }
         }
 
         .ban-item {
             background: rgba(255, 71, 87, 0.08);
             border: 1px solid rgba(255, 71, 87, 0.25);
             border-radius: 10px;
-            padding: 14px 18px;
+            padding: 12px 15px;
             font-weight: 600;
             color: #ff8080;
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 0.9rem;
             transition: var(--transition);
         }
 
@@ -375,16 +433,23 @@
 
         .combat-rules-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .combat-rules-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 25px;
+            }
         }
 
         #noResults {
             display: none;
             text-align: center;
             color: var(--text-muted);
-            font-size: 1.2rem;
-            padding: 40px;
+            font-size: 1.1rem;
+            padding: 30px;
             background: var(--bg-card);
             border-radius: 14px;
             border: 1px solid var(--border-color);
@@ -393,15 +458,15 @@
 
         #scrollTopBtn {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 20px;
+            right: 20px;
             background: var(--accent);
             color: #000;
             border: none;
-            width: 45px;
-            height: 45px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             cursor: pointer;
             display: none;
             align-items: center;
@@ -421,10 +486,10 @@
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
             text-align: center;
-            padding: 30px 20px;
+            padding: 25px 15px;
             color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-top: 70px;
+            font-size: 0.88rem;
+            margin-top: 50px;
         }
 
         footer span {
@@ -446,7 +511,7 @@
             <div class="search-wrapper">
                 <div class="search-input-container">
                     <span class="search-icon">🔍</span>
-                    <input type="text" id="searchInput" class="search-input" placeholder="Поиск по правилам (например: фишинг, ульта)..." oninput="handleSearchInput()" onkeydown="handleSearchKeydown(event)">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Поиск по правилам..." oninput="handleSearchInput()" onkeydown="handleSearchKeydown(event)">
                 </div>
                 <div id="autocompleteList" class="autocomplete-items"></div>
             </div>
@@ -488,7 +553,7 @@
                 <div class="rule-card warning-border searchable" data-keywords="таймер порог 2.5 секунды демпси ролл фол эмоции">
                     <div>
                         <div class="rule-title">
-                            Таймер порога (2.5 секунды)
+                            Таймер порога (2.5 сек)
                             <span class="penalty-badge warning">Злоупотребление = Фол</span>
                         </div>
                         <div class="rule-desc">
@@ -700,7 +765,7 @@
                 <h2>7. Список бан-стилей</h2>
             </div>
             <div class="bans-container">
-                <p style="color: var(--text-muted); margin-bottom: 15px;">К использованию на официальных боях U.C.L категорически запрещены следующие стили (включая все их вариации):</p>
+                <p style="color: var(--text-muted); margin-bottom: 15px; font-size: 0.9rem;">К использованию на официальных боях U.C.L категорически запрещены следующие стили (включая все их вариации):</p>
                 <div class="bans-grid">
                     <div class="ban-item searchable" data-keywords="слаггер slugger бан-стиль">🥊 Слаггер (Slugger)</div>
                     <div class="ban-item searchable" data-keywords="хоук hawk бан-стиль">🦅 Хоук (Hawk)</div>
@@ -721,7 +786,7 @@
     <button id="scrollTopBtn" onclick="scrollToTop()">↑</button>
 
     <footer>
-        <p>Официальный регламент лиги <span>U.C.L Combat Rules</span>. Разработано для турниров и матчей.</p>
+        <p>Официальный регламент лиги <span>U.C.L Combat Rules</span>.</p>
     </footer>
 
     <script>

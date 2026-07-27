@@ -40,6 +40,19 @@
                 radial-gradient(circle at 90% 80%, rgba(30, 144, 255, 0.04) 0%, transparent 40%);
         }
 
+        /* Scroll Progress Bar */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--accent);
+            width: 0%;
+            z-index: 1000;
+            box-shadow: 0 0 10px var(--accent);
+            transition: width 0.1s ease-out;
+        }
+
         /* Header & Hero */
         header {
             position: relative;
@@ -314,6 +327,42 @@
             gap: 25px;
         }
 
+        /* No Results Message */
+        #noResults {
+            display: none;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            padding: 40px;
+        }
+
+        /* Scroll to Top Button */
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent);
+            color: #000;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px var(--accent-glow);
+            transition: var(--transition);
+            z-index: 999;
+            font-weight: 900;
+        }
+
+        #scrollTopBtn:hover {
+            transform: scale(1.1);
+            background: #ffa502;
+        }
+
         /* Footer */
         footer {
             background: var(--bg-secondary);
@@ -342,6 +391,8 @@
 </head>
 <body>
 
+    <div id="progress-bar"></div>
+
     <header>
         <div class="hero-container">
             <div class="logo-badge">Official Rules & Regulations</div>
@@ -366,6 +417,8 @@
     </header>
 
     <main class="container">
+
+        <div id="noResults">Ничего не найдено по вашему запросу 😕</div>
 
         <section id="pd" class="rule-section">
             <div class="section-header">
@@ -628,23 +681,65 @@
 
     </main>
 
+    <button id="scrollTopBtn" onclick="scrollToTop()">↑</button>
+
     <footer>
         <p>Официальный регламент лиги <span>U.C.L Combat Rules</span>. Разработано для турниров и матчей.</p>
     </footer>
 
     <script>
+        // Поиск с авто-управлением видимостью секций
         function searchRules() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.querySelectorAll('.searchable');
+            let sections = document.querySelectorAll('.rule-section');
+            let noResults = document.getElementById('noResults');
+            let visibleCount = 0;
 
             cards.forEach(card => {
                 let text = card.innerText.toLowerCase();
                 if (text.includes(input)) {
                     card.style.display = "";
+                    visibleCount++;
                 } else {
                     card.style.display = "none";
                 }
             });
+
+            // Скрываем пустые заголовки секций, если в них ничего не нашлось
+            sections.forEach(section => {
+                let visibleCardsInSec = section.querySelectorAll('.searchable:not([style*="display: none"])');
+                if (visibleCardsInSec.length === 0) {
+                    section.style.display = "none";
+                } else {
+                    section.style.display = "";
+                }
+            });
+
+            if (visibleCount === 0) {
+                noResults.style.display = "block";
+            } else {
+                noResults.style.display = "none";
+            }
+        }
+
+        // Индикатор прогресса чтения и кнопка прокрутки вверх
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+
+            let btn = document.getElementById("scrollTopBtn");
+            if (winScroll > 300) {
+                btn.style.display = "flex";
+            } else {
+                btn.style.display = "none";
+            }
+        };
+
+        function scrollToTop() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
     </script>
 

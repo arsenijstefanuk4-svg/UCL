@@ -59,17 +59,16 @@
             position: relative;
             background: linear-gradient(135deg, rgba(15, 19, 34, 0.95), rgba(7, 9, 19, 0.98)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             border-bottom: 3px solid var(--accent);
-            padding: 40px 12px 30px;
+            padding: 40px 16px 30px;
             text-align: center;
             box-shadow: 0 10px 40px rgba(0,0,0,0.6);
             width: 100%;
         }
 
         .hero-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             width: 100%;
-            padding: 0 5px;
         }
 
         .logo-badge {
@@ -89,7 +88,7 @@
 
         h1 {
             font-family: 'Teko', sans-serif;
-            font-size: 2.8rem;
+            font-size: 3rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #fff;
@@ -117,7 +116,7 @@
             color: var(--text-muted);
             max-width: 700px;
             margin: 0 auto 20px;
-            padding: 0 5px;
+            padding: 0 10px;
         }
 
         @media (min-width: 768px) {
@@ -129,10 +128,9 @@
 
         .search-wrapper {
             width: 100%;
-            max-width: 540px;
+            max-width: 100%;
             margin: 0 auto 15px;
             position: relative;
-            padding: 0 5px;
         }
 
         .search-input-container {
@@ -155,10 +153,10 @@
             width: 100%;
             background: var(--bg-secondary);
             border: 2px solid var(--border-color);
-            padding: 12px 15px 12px 45px;
+            padding: 14px 18px 14px 48px;
             border-radius: 12px;
             color: #fff;
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-family: 'Montserrat', sans-serif;
             outline: none;
             box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
@@ -175,8 +173,8 @@
             border-top: none;
             z-index: 99;
             top: 100%;
-            left: 5px;
-            right: 5px;
+            left: 0;
+            right: 0;
             background: var(--bg-secondary);
             border-radius: 0 0 12px 12px;
             max-height: 220px;
@@ -210,7 +208,6 @@
             gap: 6px;
             flex-wrap: wrap;
             margin-top: 12px;
-            padding: 0 5px;
         }
 
         .nav-tab {
@@ -235,7 +232,7 @@
         .container {
             max-width: 1200px;
             margin: 25px auto;
-            padding: 0 12px;
+            padding: 0 16px;
             width: 100%;
         }
 
@@ -461,7 +458,7 @@
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
             text-align: center;
-            padding: 20px 12px;
+            padding: 20px 16px;
             color: var(--text-muted);
             font-size: 0.85rem;
             margin-top: 40px;
@@ -646,14 +643,14 @@
                     </div>
                 </div>
 
-                <div class="rule-card warning-border searchable" data-keywords="дабл-деши дд спидстеры финты трипл деш">
+                <div class="rule-card warning-border searchable" data-keywords="дабл-деши дд спидстеры финты трипл деш бекдеш шотган любые обстоятельства">
                     <div>
                         <div class="rule-title">
-                            Правила Дабл-дешей (ДД)
+                            Правила Дабл-дешей и Бекдешей
                             <span class="penalty-badge warning">Строгие лимиты</span>
                         </div>
                         <div class="rule-desc">
-                            Два деша подряд для спидстеров (для уклонения от финтов) строго запрещены. Два деша после двух совершенных атак — разрешены. Тройной деш запрещен полностью.
+                            Два деша подряд для спидстеров (для уклонения от финтов) строго запрещены. Два деша после двух совершенных атак — разрешены. Тройной деш запрещен полностью. <strong>При любых обстоятельствах можно делать бекдеш от шотгана, даже если игрок до этого его делал.</strong>
                         </div>
                     </div>
                 </div>

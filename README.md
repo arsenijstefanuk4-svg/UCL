@@ -55,14 +55,15 @@
             position: relative;
             background: linear-gradient(135deg, rgba(15, 19, 34, 0.95), rgba(7, 9, 19, 0.98)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             border-bottom: 3px solid var(--accent);
-            padding: 70px 20px 50px;
+            padding: 70px 15px 50px;
             text-align: center;
             box-shadow: 0 10px 40px rgba(0,0,0,0.6);
         }
 
         .hero-container {
-            max-width: 1000px;
+            max-width: 800px;
             margin: 0 auto;
+            width: 100%;
         }
 
         .logo-badge {
@@ -111,10 +112,9 @@
 
         .search-wrapper {
             width: 100%;
-            max-width: 650px;
+            max-width: 540px;
             margin: 0 auto 20px;
             position: relative;
-            padding: 0 10px;
         }
 
         .search-input-container {
@@ -126,7 +126,7 @@
 
         .search-icon {
             position: absolute;
-            left: 20px;
+            left: 18px;
             font-size: 1.1rem;
             color: var(--text-muted);
             pointer-events: none;
@@ -138,7 +138,7 @@
             width: 100%;
             background: var(--bg-secondary);
             border: 2px solid var(--border-color);
-            padding: 14px 20px 14px 52px;
+            padding: 14px 20px 14px 50px;
             border-radius: 12px;
             color: #fff;
             font-size: 1rem;
@@ -163,8 +163,8 @@
             border-top: none;
             z-index: 99;
             top: 100%;
-            left: 10px;
-            right: 10px;
+            left: 0;
+            right: 0;
             background: var(--bg-secondary);
             border-radius: 0 0 12px 12px;
             max-height: 250px;
@@ -237,7 +237,7 @@
         .container {
             max-width: 1200px;
             margin: 50px auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
 
         section {
@@ -267,7 +267,7 @@
 
         .rules-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
         }
 
@@ -348,7 +348,7 @@
 
         .bans-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 15px;
             margin-top: 15px;
         }
@@ -375,7 +375,7 @@
 
         .combat-rules-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
         }
 
@@ -443,7 +443,7 @@
             <h1>Правила боёв <span>U.C.L</span></h1>
             <p class="subtitle">Единый официальный свод соревновательного регламента лиги. Четкие требования, стандарты и система наказаний.</p>
             
-            <div class="search-wrapper" autocomplete="off">
+            <div class="search-wrapper">
                 <div class="search-input-container">
                     <span class="search-icon">🔍</span>
                     <input type="text" id="searchInput" class="search-input" placeholder="Поиск по правилам (например: фишинг, ульта)..." oninput="handleSearchInput()" onkeydown="handleSearchKeydown(event)">

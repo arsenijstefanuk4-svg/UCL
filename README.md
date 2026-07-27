@@ -106,18 +106,33 @@
             margin: 0 auto 35px;
         }
 
-        /* Search Bar */
+        /* Search Bar & Autocomplete Container */
         .search-wrapper {
             max-width: 500px;
             margin: 0 auto 25px;
             position: relative;
         }
 
+        .search-input-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            pointer-events: none;
+            z-index: 2;
+        }
+
         .search-input {
             width: 100%;
             background: var(--bg-secondary);
             border: 2px solid var(--border-color);
-            padding: 14px 20px 14px 50px;
+            padding: 14px 20px 14px 48px;
             border-radius: 10px;
             color: #fff;
             font-size: 1rem;
@@ -131,13 +146,40 @@
             box-shadow: 0 0 15px var(--accent-glow);
         }
 
-        .search-icon {
+        /* Suggestions dropdown list */
+        .autocomplete-items {
             position: absolute;
-            left: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.2rem;
-            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            border-top: none;
+            z-index: 99;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--bg-secondary);
+            border-radius: 0 0 10px 10px;
+            max-height: 200px;
+            overflow-y: auto;
+            text-align: left;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .autocomplete-items div {
+            padding: 12px 20px;
+            cursor: pointer;
+            color: var(--text-main);
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .autocomplete-items div:last-child {
+            border-bottom: none;
+        }
+
+        .autocomplete-items div:hover {
+            background: var(--bg-card-hover);
+            color: var(--accent);
+            padding-left: 25px;
         }
 
         /* Navigation Tabs */
@@ -399,9 +441,12 @@
             <h1>Правила боёв <span>U.C.L</span></h1>
             <p class="subtitle">Единый официальный свод соревновательного регламента лиги. Четкие требования, стандарты и система наказаний.</p>
             
-            <div class="search-wrapper">
-                <span class="search-icon">🔍</span>
-                <input type="text" id="searchInput" class="search-input" placeholder="Поиск по правилам (например: фишинг, ульта, деш)..." onkeyup="searchRules()">
+            <div class="search-wrapper" autocomplete="off">
+                <div class="search-input-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Поиск по правилам (например: фишинг, ульта, деш)..." oninput="handleSearchInput()">
+                </div>
+                <div id="autocompleteList" class="autocomplete-items"></div>
             </div>
 
             <div class="nav-tabs">
@@ -420,13 +465,14 @@
 
         <div id="noResults">Ничего не найдено по вашему запросу 😕</div>
 
+        <!-- СЕКЦИЯ 1: ПД ФИШИНГ -->
         <section id="pd" class="rule-section">
             <div class="section-header">
                 <span class="icon">⏱️</span>
                 <h2>1. ПД Фишинг (Пассивное уклонение)</h2>
             </div>
             <div class="rules-grid">
-                <div class="rule-card warning-border searchable">
+                <div class="rule-card warning-border searchable" data-keywords="пд фишинг уклонение пассивное удары таймер">
                     <div>
                         <div class="rule-title">
                             Суть ПД Фишинга
@@ -438,7 +484,7 @@
                     </div>
                 </div>
 
-                <div class="rule-card warning-border searchable">
+                <div class="rule-card warning-border searchable" data-keywords="таймер порог 2.5 секунды демпси ролл фол эмоции">
                     <div>
                         <div class="rule-title">
                             Таймер порога (2.5 секунды)
@@ -450,7 +496,7 @@
                     </div>
                 </div>
 
-                <div class="rule-card warning-border searchable">
+                <div class="rule-card warning-border searchable" data-keywords="контроль дистанции фол обоим демпси с-кейтинг бекдеш шотган">
                     <div>
                         <div class="rule-title">
                             Контроль дистанции
@@ -464,13 +510,14 @@
             </div>
         </section>
 
+        <!-- СЕКЦИЯ 2: БАГОЮЗ -->
         <section id="bugs" class="rule-section">
             <div class="section-header">
                 <span class="icon">🚫</span>
                 <h2>2. Запрещенный багоюз</h2>
             </div>
             <div class="rules-grid">
-                <div class="rule-card danger-border searchable">
+                <div class="rule-card danger-border searchable" data-keywords="парирование ультимейта ульта блок баг дисквалификация">
                     <div>
                         <div class="rule-title">
                             Парирование ультимейта
@@ -482,7 +529,7 @@
                     </div>
                 </div>
 
-                <div class="rule-card danger-border searchable">
+                <div class="rule-card danger-border searchable" data-keywords="нелегальный стаггеринг удар m1 серия предупреждение фол">
                     <div>
                         <div class="rule-title">
                             Нелегальный стаггеринг
@@ -494,7 +541,7 @@
                     </div>
                 </div>
 
-                <div class="rule-card danger-border searchable">
+                <div class="rule-card danger-border searchable" data-keywords="залипающие комбо смеши m2 m1+m2 баги">
                     <div>
                         <div class="rule-title">
                             Залипающие комбо (Смеши)
@@ -508,13 +555,14 @@
             </div>
         </section>
 
+        <!-- СЕКЦИЯ 3: МЕДЛЕННЫЕ КОМБО М1 -->
         <section id="combos" class="rule-section">
             <div class="section-header">
                 <span class="icon">🐢</span>
                 <h2>3. Медленные комбо М1 (Слоу клики)</h2>
             </div>
             <div class="rules-grid">
-                <div class="rule-card warning-border searchable">
+                <div class="rule-card warning-border searchable" data-keywords="слоу клики медленные m1 ультимейт фол серия">
                     <div>
                         <div class="rule-title">
                             Регламент слоу кликов
@@ -526,7 +574,7 @@
                     </div>
                 </div>
 
-                <div class="rule-card info-border searchable">
+                <div class="rule-card info-border searchable" data-keywords="исключения стили крюк айрон фист слоу клики комбо">
                     <div>
                         <div class="rule-title">
                             Исключения для стилей
@@ -540,13 +588,14 @@
             </div>
         </section>
 
+        <!-- СЕКЦИЯ 4: С-КЕЙТИНГ И БЕКДЕШИ -->
         <section id="skating" class="rule-section">
             <div class="section-header">
                 <span class="icon">⛸️</span>
                 <h2>4. С-кейтинг, Бекдеши и ДД</h2>
             </div>
             <div class="rules-grid">
-                <div class="rule-card warning-border searchable">
+                <div class="rule-card warning-border searchable" data-keywords="с-кейтинг пассивный отход назад клавиша s фол бекдеши">
                     <div>
                         <div class="rule-title">
                             С-кейтинг и пассивный отход
@@ -558,7 +607,7 @@
                     </div>
                 </div>
 
-                <div class="rule-card warning-border searchable">
+                <div class="rule-card warning-border searchable" data-keywords="дабл-деши дд спидстеры финты трипл деш">
                     <div>
                         <div class="rule-title">
                             Правила Дабл-дешей (ДД)
@@ -572,13 +621,14 @@
             </div>
         </section>
 
+        <!-- СЕКЦИЯ 5: ПОЛЬЗОВАТЕЛЬСКИЕ ЗВУКИ И ИЗОБРАЖЕНИЯ -->
         <section id="audio" class="rule-section">
             <div class="section-header">
                 <span class="icon">🎨</span>
                 <h2>5. Кастомные звуки и изображения</h2>
             </div>
             <div class="rules-grid">
-                <div class="rule-card warning-border searchable">
+                <div class="rule-card warning-border searchable" data-keywords="звуки пд отвлекающие эффекты судья кастомные">
                     <div>
                         <div class="rule-title">
                             Звуки ПД и отвлекающие эффекты
@@ -590,7 +640,7 @@
                     </div>
                 </div>
 
-                <div class="rule-card danger-border searchable">
+                <div class="rule-card danger-border searchable" data-keywords="каунтеры картинки звуки изображения ультимативные способности ульты">
                     <div>
                         <div class="rule-title">
                             Каунтеры и картинки
@@ -604,13 +654,14 @@
             </div>
         </section>
 
+        <!-- СЕКЦИЯ 6: ПРАВИЛА ПРОВЕДЕНИЯ БОЕВ U.C.L -->
         <section id="combat" class="rule-section">
             <div class="section-header">
                 <span class="icon">🏟️</span>
                 <h2>6. Регламент проведения боёв U.C.L</h2>
             </div>
             <div class="combat-rules-grid">
-                <div class="rule-card info-border searchable">
+                <div class="rule-card info-border searchable" data-keywords="проблемы со связью вылеты 5 минут тко нокаут">
                     <div>
                         <div class="rule-title">🌐 Проблемы со связью и вылеты</div>
                         <div class="rule-desc">
@@ -619,7 +670,7 @@
                     </div>
                 </div>
 
-                <div class="rule-card info-border searchable">
+                <div class="rule-card info-border searchable" data-keywords="авторитет рефери судья вердикт ошибки">
                     <div>
                         <div class="rule-title">⚖️ Авторитет рефери</div>
                         <div class="rule-desc">
@@ -628,7 +679,7 @@
                     </div>
                 </div>
 
-                <div class="rule-card info-border searchable">
+                <div class="rule-card info-border searchable" data-keywords="суточный лимит поединки 3 боя календарные сутки">
                     <div>
                         <div class="rule-title">📅 Суточный лимит на поединки</div>
                         <div class="rule-desc">
@@ -637,7 +688,7 @@
                     </div>
                 </div>
 
-                <div class="rule-card info-border searchable">
+                <div class="rule-card info-border searchable" data-keywords="дивизионы переходы пояс защита">
                     <div>
                         <div class="rule-title">📈 Дивизионы и переходы</div>
                         <div class="rule-desc">
@@ -646,7 +697,7 @@
                     </div>
                 </div>
 
-                <div class="rule-card info-border searchable">
+                <div class="rule-card info-border searchable" data-keywords="право вызов чемпион топ-5 топ-1 рейтинг">
                     <div>
                         <div class="rule-title">👑 Право на вызов чемпиона</div>
                         <div class="rule-desc">
@@ -657,6 +708,7 @@
             </div>
         </section>
 
+        <!-- СЕКЦИЯ 7: БАН СТИЛИ -->
         <section id="bans" class="rule-section">
             <div class="section-header">
                 <span class="icon">❌</span>
@@ -665,16 +717,16 @@
             <div class="bans-container">
                 <p style="color: var(--text-muted); margin-bottom: 15px;">К использованию на официальных боях U.C.L категорически запрещены следующие стили (включая все их шайни/блестящие вариации и эксклюзивные версии):</p>
                 <div class="bans-grid">
-                    <div class="ban-item searchable">🥊 Слаггер (Slugger)</div>
-                    <div class="ban-item searchable">🦅 Хоук (Hawk)</div>
-                    <div class="ban-item searchable">🔄 Свитч Хит (Switch Hit)</div>
-                    <div class="ban-item searchable">🔨 Хаммер (Hammer)</div>
-                    <div class="ban-item searchable">🐟 Драгонфиш (Dragonfish)</div>
-                    <div class="ban-item searchable">⚡ Вайт Эш (White Ash)</div>
-                    <div class="ban-item searchable">🐺 Вульф (Wolf)</div>
-                    <div class="ban-item searchable">🌀 Крюк (без слоу кликов)</div>
-                    <div class="ban-item searchable">🎯 Буллет (Bullet)</div>
-                    <div class="ban-item searchable">⏳ Хронос (без эмоций)</div>
+                    <div class="ban-item searchable" data-keywords="слаггер slugger бан-стиль">🥊 Слаггер (Slugger)</div>
+                    <div class="ban-item searchable" data-keywords="хоук hawk бан-стиль">🦅 Хоук (Hawk)</div>
+                    <div class="ban-item searchable" data-keywords="свитч хит switch hit бан-стиль">🔄 Свитч Хит (Switch Hit)</div>
+                    <div class="ban-item searchable" data-keywords="хаммер hammer бан-стиль">🔨 Хаммер (Hammer)</div>
+                    <div class="ban-item searchable" data-keywords="драгонфиш dragonfish бан-стиль">🐟 Драгонфиш (Dragonfish)</div>
+                    <div class="ban-item searchable" data-keywords="вайт эш white ash бан-стиль">⚡ Вайт Эш (White Ash)</div>
+                    <div class="ban-item searchable" data-keywords="вульф wolf бан-стиль">🐺 Вульф (Wolf)</div>
+                    <div class="ban-item searchable" data-keywords="крюк слоу клики бан-стиль">🌀 Крюк (без слоу кликов)</div>
+                    <div class="ban-item searchable" data-keywords="буллет bullet бан-стиль">🎯 Буллет (Bullet)</div>
+                    <div class="ban-item searchable" data-keywords="хронос эмоции бан-стиль">⏳ Хронос (без эмоций)</div>
                 </div>
             </div>
         </section>
@@ -688,9 +740,23 @@
     </footer>
 
     <script>
-        // Поиск с авто-управлением видимостью секций
-        function searchRules() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
+        // База доступных фраз для умного автодополнения (suggestions)
+        const suggestionsData = [
+            "ПД Фишинг", "Таймер порога", "Контроль дистанции",
+            "Парирование ультимейта", "Нелегальный стаггеринг", "Залипающие комбо (Смеши)",
+            "Слоу клики", "Исключения для стилей", "С-кейтинг", "Дабл-деши (ДД)",
+            "Звуки ПД", "Каунтеры и картинки", "Проблемы со связью", "Авторитет рефери",
+            "Суточный лимит", "Дивизионы и переходы", "Вызов чемпиона",
+            "Слаггер", "Хоук", "Свитч Хит", "Хаммер", "Драгонфиш", "Вайт Эш", "Вульф", "Крюк", "Буллет", "Хронос"
+        ];
+
+        function handleSearchInput() {
+            let inputField = document.getElementById('searchInput');
+            let inputVal = inputField.value.trim().toLowerCase();
+            let listContainer = document.getElementById('autocompleteList');
+            listContainer.innerHTML = "";
+
+            // Фильтрация карточек на странице (живой поиск)
             let cards = document.querySelectorAll('.searchable');
             let sections = document.querySelectorAll('.rule-section');
             let noResults = document.getElementById('noResults');
@@ -698,7 +764,8 @@
 
             cards.forEach(card => {
                 let text = card.innerText.toLowerCase();
-                if (text.includes(input)) {
+                let keywords = card.getAttribute('data-keywords') || "";
+                if (inputVal === "" || text.includes(inputVal) || keywords.includes(inputVal)) {
                     card.style.display = "";
                     visibleCount++;
                 } else {
@@ -706,7 +773,6 @@
                 }
             });
 
-            // Скрываем пустые заголовки секций, если в них ничего не нашлось
             sections.forEach(section => {
                 let visibleCardsInSec = section.querySelectorAll('.searchable:not([style*="display: none"])');
                 if (visibleCardsInSec.length === 0) {
@@ -716,14 +782,36 @@
                 }
             });
 
-            if (visibleCount === 0) {
+            if (visibleCount === 0 && inputVal !== "") {
                 noResults.style.display = "block";
             } else {
                 noResults.style.display = "none";
             }
+
+            // Выпадающие подсказки автодополнения (Autocomplete)
+            if (inputVal.length > 0) {
+                let matches = suggestionsData.filter(item => item.toLowerCase().includes(inputVal));
+                matches.slice(0, 5).forEach(match => {
+                    let div = document.createElement('div');
+                    div.innerHTML = match;
+                    div.onclick = function() {
+                        inputField.value = match;
+                        listContainer.innerHTML = "";
+                        handleSearchInput();
+                    };
+                    listContainer.appendChild(div);
+                });
+            }
         }
 
-        // Индикатор прогресса чтения и кнопка прокрутки вверх
+        // Закрывать подсказки при клике вне поля
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.search-wrapper')) {
+                document.getElementById('autocompleteList').innerHTML = "";
+            }
+        });
+
+        // Индикатор чтения и кнопка наверх
         window.onscroll = function() {
             let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;

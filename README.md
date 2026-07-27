@@ -1,7 +1,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>U.C.L — Официальные Правила Боёв</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Teko:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -28,12 +28,16 @@
             padding: 0;
         }
 
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-main);
-            line-height: 1.7;
-            overflow-x: hidden;
+            line-height: 1.6;
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(243, 156, 18, 0.05) 0%, transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(30, 144, 255, 0.05) 0%, transparent 40%);
@@ -55,15 +59,17 @@
             position: relative;
             background: linear-gradient(135deg, rgba(15, 19, 34, 0.95), rgba(7, 9, 19, 0.98)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             border-bottom: 3px solid var(--accent);
-            padding: 50px 15px 40px;
+            padding: 40px 12px 30px;
             text-align: center;
             box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            width: 100%;
         }
 
         .hero-container {
             max-width: 800px;
             margin: 0 auto;
             width: 100%;
+            padding: 0 5px;
         }
 
         .logo-badge {
@@ -71,11 +77,11 @@
             background: var(--accent);
             color: #000;
             font-family: 'Teko', sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            padding: 2px 16px;
+            padding: 2px 14px;
             border-radius: 6px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             letter-spacing: 2px;
             text-transform: uppercase;
             box-shadow: 0 0 20px var(--accent-glow);
@@ -83,11 +89,11 @@
 
         h1 {
             font-family: 'Teko', sans-serif;
-            font-size: 3.5rem;
+            font-size: 2.8rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #fff;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             line-height: 1;
             text-shadow: 0 5px 25px rgba(0,0,0,0.7);
         }
@@ -97,7 +103,7 @@
                 font-size: 4.5rem;
             }
             header {
-                padding: 70px 15px 50px;
+                padding: 70px 20px 50px;
             }
         }
 
@@ -107,11 +113,11 @@
         }
 
         .subtitle {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
             max-width: 700px;
-            margin: 0 auto 25px;
-            padding: 0 10px;
+            margin: 0 auto 20px;
+            padding: 0 5px;
         }
 
         @media (min-width: 768px) {
@@ -124,9 +130,9 @@
         .search-wrapper {
             width: 100%;
             max-width: 540px;
-            margin: 0 auto 20px;
+            margin: 0 auto 15px;
             position: relative;
-            padding: 0 10px;
+            padding: 0 5px;
         }
 
         .search-input-container {
@@ -138,35 +144,29 @@
 
         .search-icon {
             position: absolute;
-            left: 26px;
-            font-size: 1.1rem;
+            left: 18px;
+            font-size: 1rem;
             color: var(--text-muted);
             pointer-events: none;
             z-index: 3;
-            transition: var(--transition);
         }
 
         .search-input {
             width: 100%;
             background: var(--bg-secondary);
             border: 2px solid var(--border-color);
-            padding: 14px 20px 14px 50px;
+            padding: 12px 15px 12px 45px;
             border-radius: 12px;
             color: #fff;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-family: 'Montserrat', sans-serif;
-            transition: var(--transition);
             outline: none;
             box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
         }
 
         .search-input:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 20px var(--accent-glow), inset 0 2px 5px rgba(0,0,0,0.3);
-        }
-
-        .search-input:focus + .search-icon {
-            color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
         }
 
         .autocomplete-items {
@@ -175,24 +175,22 @@
             border-top: none;
             z-index: 99;
             top: 100%;
-            left: 10px;
-            right: 10px;
+            left: 5px;
+            right: 5px;
             background: var(--bg-secondary);
             border-radius: 0 0 12px 12px;
-            max-height: 250px;
+            max-height: 220px;
             overflow-y: auto;
             text-align: left;
             box-shadow: 0 15px 30px rgba(0,0,0,0.6);
-            backdrop-filter: blur(10px);
         }
 
         .autocomplete-items div {
-            padding: 12px 20px;
+            padding: 10px 15px;
             cursor: pointer;
             color: var(--text-main);
             border-bottom: 1px solid var(--border-color);
-            font-size: 0.92rem;
-            transition: var(--transition);
+            font-size: 0.88rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -200,41 +198,30 @@
 
         .autocomplete-items div small {
             color: var(--text-muted);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             background: rgba(255,255,255,0.05);
-            padding: 2px 8px;
+            padding: 2px 6px;
             border-radius: 4px;
-        }
-
-        .autocomplete-items div:last-child {
-            border-bottom: none;
-        }
-
-        .autocomplete-items div:hover, .autocomplete-items div.autocomplete-active {
-            background: var(--bg-card-hover);
-            color: var(--accent);
-            padding-left: 24px;
         }
 
         .nav-tabs {
             display: flex;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
-            margin-top: 15px;
-            padding: 0 10px;
+            margin-top: 12px;
+            padding: 0 5px;
         }
 
         .nav-tab {
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            padding: 6px 14px;
+            padding: 6px 12px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.82rem;
-            transition: var(--transition);
+            font-size: 0.78rem;
             text-decoration: none;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
@@ -243,38 +230,39 @@
             background: var(--accent);
             color: #000;
             border-color: var(--accent);
-            box-shadow: 0 0 15px var(--accent-glow);
-            transform: translateY(-2px);
         }
 
         .container {
             max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 15px;
+            margin: 25px auto;
+            padding: 0 12px;
+            width: 100%;
         }
 
         @media (min-width: 768px) {
             .container {
                 margin: 50px auto;
+                padding: 0 20px;
             }
         }
 
         section {
-            margin-bottom: 45px;
+            margin-bottom: 40px;
+            width: 100%;
         }
 
         .section-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 18px;
             border-bottom: 2px solid var(--border-color);
             padding-bottom: 10px;
         }
 
         .section-header h2 {
             font-family: 'Teko', sans-serif;
-            font-size: 2rem;
+            font-size: 1.8rem;
             letter-spacing: 1.5px;
             color: #fff;
             text-transform: uppercase;
@@ -287,7 +275,7 @@
         }
 
         .section-header .icon {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
         }
 
         @media (min-width: 768px) {
@@ -296,15 +284,16 @@
             }
         }
 
-        .rules-grid {
+        .rules-grid, .combat-rules-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
+            grid-template-columns: 100%;
+            gap: 15px;
+            width: 100%;
         }
 
         @media (min-width: 768px) {
-            .rules-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            .rules-grid, .combat-rules-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
                 gap: 25px;
             }
         }
@@ -312,26 +301,22 @@
         .rule-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 20px;
-            transition: var(--transition);
+            border-radius: 12px;
+            padding: 18px;
+            width: 100%;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
 
         @media (min-width: 768px) {
             .rule-card {
                 padding: 25px;
+                border-radius: 14px;
             }
-        }
-
-        .rule-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.5), 0 0 15px rgba(243, 156, 18, 0.1);
-            background: var(--bg-card-hover);
         }
 
         .rule-card.danger-border { border-left: 5px solid var(--danger); }
@@ -339,19 +324,25 @@
         .rule-card.info-border { border-left: 5px solid var(--info); }
 
         .rule-title {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             font-weight: 700;
             color: #fff;
             margin-bottom: 10px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
+        @media (min-width: 768px) {
+            .rule-title {
+                font-size: 1.35rem;
+            }
+        }
+
         .penalty-badge {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             padding: 3px 8px;
             border-radius: 6px;
             font-weight: 700;
@@ -372,9 +363,16 @@
         }
 
         .rule-desc {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: var(--text-muted);
-            line-height: 1.6;
+            line-height: 1.55;
+        }
+
+        @media (min-width: 768px) {
+            .rule-desc {
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
         }
 
         .rule-desc strong {
@@ -385,75 +383,58 @@
         .bans-container {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 20px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 18px;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
         @media (min-width: 768px) {
             .bans-container {
                 padding: 30px;
+                border-radius: 14px;
             }
         }
 
         .bans-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-            margin-top: 15px;
+            grid-template-columns: 100%;
+            gap: 10px;
+            margin-top: 12px;
+            width: 100%;
         }
 
-        @media (min-width: 600px) {
+        @media (min-width: 550px) {
             .bans-grid {
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                gap: 15px;
+                gap: 12px;
             }
         }
 
         .ban-item {
             background: rgba(255, 71, 87, 0.08);
             border: 1px solid rgba(255, 71, 87, 0.25);
-            border-radius: 10px;
-            padding: 12px 15px;
+            border-radius: 8px;
+            padding: 10px 14px;
             font-weight: 600;
             color: #ff8080;
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
-
-        .ban-item:hover {
-            background: rgba(255, 71, 87, 0.18);
-            border-color: var(--danger);
-            transform: translateX(4px);
-            box-shadow: 0 0 12px var(--danger-glow);
-        }
-
-        .combat-rules-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        @media (min-width: 768px) {
-            .combat-rules-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: 25px;
-            }
+            gap: 8px;
+            font-size: 0.85rem;
+            width: 100%;
         }
 
         #noResults {
             display: none;
             text-align: center;
             color: var(--text-muted);
-            font-size: 1.1rem;
-            padding: 30px;
+            font-size: 1rem;
+            padding: 25px;
             background: var(--bg-card);
-            border-radius: 14px;
+            border-radius: 12px;
             border: 1px solid var(--border-color);
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         #scrollTopBtn {
@@ -463,33 +444,28 @@
             background: var(--accent);
             color: #000;
             border: none;
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
             display: none;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 20px var(--accent-glow);
-            transition: var(--transition);
+            box-shadow: 0 4px 15px var(--accent-glow);
             z-index: 999;
             font-weight: 900;
-        }
-
-        #scrollTopBtn:hover {
-            transform: scale(1.1) translateY(-3px);
-            background: #ffa502;
         }
 
         footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
             text-align: center;
-            padding: 25px 15px;
+            padding: 20px 12px;
             color: var(--text-muted);
-            font-size: 0.88rem;
-            margin-top: 50px;
+            font-size: 0.85rem;
+            margin-top: 40px;
+            width: 100%;
         }
 
         footer span {
@@ -765,7 +741,7 @@
                 <h2>7. Список бан-стилей</h2>
             </div>
             <div class="bans-container">
-                <p style="color: var(--text-muted); margin-bottom: 15px; font-size: 0.9rem;">К использованию на официальных боях U.C.L категорически запрещены следующие стили (включая все их вариации):</p>
+                <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.85rem;">К использованию на официальных боях U.C.L категорически запрещены следующие стили (включая все их вариации):</p>
                 <div class="bans-grid">
                     <div class="ban-item searchable" data-keywords="слаггер slugger бан-стиль">🥊 Слаггер (Slugger)</div>
                     <div class="ban-item searchable" data-keywords="хоук hawk бан-стиль">🦅 Хоук (Hawk)</div>

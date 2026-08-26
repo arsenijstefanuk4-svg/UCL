@@ -3,362 +3,559 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>U.C.L — Официальный Регламент Боёв</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Teko:wght@600;700&display=swap" rel="stylesheet">
+    <title>U.C.L — Ultimate Championship League</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,800;0,900;1,900&family=Teko:wght@600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #070913;
-            --bg-secondary: #0f1322;
-            --bg-card: rgba(21, 26, 46, 0.7);
-            --accent: #f39c12;
-            --accent-glow: rgba(243, 156, 18, 0.4);
+            --bg-main: #06070c;
+            --bg-card: rgba(18, 22, 41, 0.75);
+            --bg-card-hover: rgba(26, 32, 59, 0.9);
+            --accent-gold: #ffb703;
+            --accent-gold-glow: rgba(255, 183, 3, 0.35);
             --danger: #ff4757;
             --danger-glow: rgba(255, 71, 87, 0.4);
-            --success: #2ed573;
-            --info: #1e90ff;
-            --text-main: #f1f5f9;
-            --text-muted: #8b9bb4;
-            --border-color: rgba(35, 45, 74, 0.8);
+            --success: #00e676;
+            --info: #00f2fe;
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-accent: rgba(255, 183, 3, 0.3);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { width: 100%; overflow-x: hidden; scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-main);
+            background-color: var(--bg-main);
+            color: var(--text-primary);
             line-height: 1.6;
+            overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(243, 156, 18, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(30, 144, 255, 0.05) 0%, transparent 40%);
+                radial-gradient(circle at 15% 15%, rgba(255, 183, 3, 0.04) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(0, 242, 254, 0.04) 0%, transparent 45%);
         }
 
-        /* Preloader */
+        /* Loading Screen */
         #loader {
-            position: fixed;
-            inset: 0;
-            background: var(--bg-primary);
+            position: fixed; inset: 0;
+            background: #030407;
             z-index: 99999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.5s ease, visibility 0.5s;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s;
         }
-        .spinner {
-            width: 70px;
-            height: 70px;
-            border: 5px solid rgba(243, 156, 18, 0.2);
-            border-top: 5px solid var(--accent);
+        .loader-ring {
+            width: 80px; height: 80px;
+            border: 4px solid rgba(255, 183, 3, 0.1);
+            border-top: 4px solid var(--accent-gold);
             border-radius: 50%;
-            animation: spin 1s infinite linear;
-            margin-bottom: 15px;
+            animation: spin 0.9s infinite linear;
+            box-shadow: 0 0 20px var(--accent-gold-glow);
+        }
+        .loader-title {
+            font-family: 'Teko', sans-serif;
+            font-size: 2rem; letter-spacing: 3px;
+            color: var(--accent-gold); margin-top: 20px;
+            text-shadow: 0 0 10px var(--accent-gold-glow);
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* Progress & Floating UI */
+        /* Progress Line */
         #progress-bar {
-            position: fixed; top: 0; left: 0; height: 4px;
-            background: var(--accent); width: 0%; z-index: 1000;
-            box-shadow: 0 0 12px var(--accent);
+            position: fixed; top: 0; left: 0; height: 3px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--info));
+            width: 0%; z-index: 10000;
+            box-shadow: 0 0 10px var(--accent-gold);
         }
-        
-        /* Status Radar Banner */
+
+        /* Top Bar / Status Radar */
+        .status-bar-wrapper {
+            display: flex; justify-content: center; padding: 15px 10px 0;
+        }
         .status-radar {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: rgba(15, 19, 34, 0.9);
-            border: 1px solid var(--border-color);
-            padding: 8px 16px;
-            border-radius: 30px;
-            margin: 0 auto 15px;
-            width: fit-content;
-            backdrop-filter: blur(8px);
+            display: flex; align-items: center; gap: 10px;
+            background: rgba(18, 22, 41, 0.8);
+            border: 1px solid var(--border-accent);
+            padding: 6px 18px; border-radius: 50px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
         .radar-dot {
-            width: 12px; height: 12px; border-radius: 50%;
+            width: 10px; height: 10px; border-radius: 50%;
             position: relative;
         }
-        .radar-dot.open { background: var(--success); box-shadow: 0 0 10px var(--success); }
-        .radar-dot.closed { background: var(--danger); box-shadow: 0 0 10px var(--danger); }
+        .radar-dot.open { background: var(--success); box-shadow: 0 0 12px var(--success); }
+        .radar-dot.closed { background: var(--danger); box-shadow: 0 0 12px var(--danger); }
         .radar-dot::after {
-            content: ''; position: absolute; inset: -3px; border-radius: 50%;
-            border: 2px solid cubic-bezier(0, 0.2, 0.8, 1);
-            animation: pulse 1.5s infinite;
+            content: ''; position: absolute; inset: -4px; border-radius: 50%;
+            border: 2px solid currentColor; opacity: 0.7;
+            animation: pulse 1.6s infinite ease-out;
         }
-        @keyframes pulse { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(1.8); opacity: 0; } }
+        @keyframes pulse { 0% { transform: scale(0.6); opacity: 1; } 100% { transform: scale(2.2); opacity: 0; } }
+        .radar-text { font-size: 0.8rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
 
-        /* Header & Hero */
+        /* Hero Header */
         header {
-            background: linear-gradient(135deg, rgba(15, 19, 34, 0.95), rgba(7, 9, 19, 0.98)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-            border-bottom: 3px solid var(--accent);
-            padding: 40px 16px 30px;
-            text-align: center;
+            position: relative; padding: 30px 20px 40px; text-align: center;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(180deg, rgba(6, 7, 12, 0.4) 0%, var(--bg-main) 100%);
         }
-        .hero-container { max-width: 900px; margin: 0 auto; }
-        .logo-badge {
-            display: inline-block; background: var(--accent); color: #000;
-            font-family: 'Teko', sans-serif; font-size: 1.3rem; font-weight: 700;
-            padding: 2px 14px; border-radius: 6px; letter-spacing: 2px;
-            text-transform: uppercase; margin-bottom: 10px;
+        .badge-main {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-gold), #d48806);
+            color: #000; font-family: 'Teko', sans-serif;
+            font-size: 1.4rem; font-weight: 700; padding: 2px 16px;
+            border-radius: 4px; letter-spacing: 2px; text-transform: uppercase;
+            box-shadow: 0 0 15px var(--accent-gold-glow); margin-bottom: 12px;
         }
         h1 {
-            font-family: 'Teko', sans-serif; font-size: 3.5rem; text-transform: uppercase;
-            letter-spacing: 2px; line-height: 1; margin-bottom: 6px;
+            font-family: 'Teko', sans-serif; font-size: 4rem;
+            line-height: 0.95; letter-spacing: 2px; text-transform: uppercase;
+            margin-bottom: 15px;
         }
-        h1 span { color: var(--accent); }
+        h1 span {
+            background: linear-gradient(135deg, var(--accent-gold), #ffffff);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        /* Search input */
+        .search-box {
+            position: relative; max-width: 650px; margin: 25px auto 10px;
+        }
+        .search-box input {
+            width: 100%; background: rgba(18, 22, 41, 0.9);
+            border: 1px solid var(--border-accent);
+            padding: 16px 22px; border-radius: 14px;
+            color: #fff; font-size: 0.95rem; font-weight: 600;
+            outline: none; transition: 0.3s ease;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+        .search-box input:focus {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 25px var(--accent-gold-glow);
+        }
+
+        /* Nav Pills */
+        .nav-scroller {
+            display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;
+            max-width: 1000px; margin: 25px auto 0;
+        }
+        .nav-btn {
+            background: var(--bg-card); border: 1px solid var(--border);
+            color: var(--text-secondary); padding: 8px 16px; border-radius: 8px;
+            font-weight: 700; font-size: 0.8rem; text-decoration: none;
+            transition: 0.25s ease; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .nav-btn:hover {
+            background: var(--accent-gold); color: #000;
+            border-color: var(--accent-gold); box-shadow: 0 4px 15px var(--accent-gold-glow);
+        }
+
+        /* Main Content Structure */
+        .container { max-width: 1250px; margin: 40px auto; padding: 0 20px; }
+        section { margin-bottom: 50px; }
         
-        /* Search */
-        .search-wrapper { position: relative; max-width: 600px; margin: 20px auto 10px; }
-        .search-input {
-            width: 100%; background: var(--bg-secondary); border: 2px solid var(--border-color);
-            padding: 14px 18px; border-radius: 12px; color: #fff; font-size: 1rem;
-            outline: none; transition: var(--transition);
+        .section-title {
+            display: flex; align-items: center; gap: 12px;
+            margin-bottom: 25px; border-bottom: 1px solid var(--border);
+            padding-bottom: 12px;
         }
-        .search-input:focus { border-color: var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
-
-        /* Navigation */
-        .nav-tabs { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 15px; }
-        .nav-tab {
-            background: var(--bg-secondary); border: 1px solid var(--border-color);
-            color: var(--text-main); padding: 8px 14px; border-radius: 8px;
-            font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: 0.2s;
+        .section-title h2 {
+            font-family: 'Teko', sans-serif; font-size: 2.5rem;
+            letter-spacing: 1.5px; text-transform: uppercase;
         }
-        .nav-tab:hover { background: var(--accent); color: #000; }
-
-        /* Container & Cards */
-        .container { max-width: 1200px; margin: 30px auto; padding: 0 16px; }
-        section { margin-bottom: 40px; }
-        .section-header {
-            display: flex; align-items: center; gap: 10px; margin-bottom: 18px;
-            border-bottom: 2px solid var(--border-color); padding-bottom: 10px;
+        .section-title .icon-box {
+            width: 8px; height: 28px; background: var(--accent-gold);
+            border-radius: 2px; box-shadow: 0 0 10px var(--accent-gold-glow);
         }
-        .section-header h2 { font-family: 'Teko', sans-serif; font-size: 2.2rem; text-transform: uppercase; }
 
-        .rules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
-        .rule-card {
-            background: var(--bg-card); border: 1px solid var(--border-color);
-            border-radius: 14px; padding: 22px; backdrop-filter: blur(10px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        /* Cards Layout */
+        .grid-cards {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px;
+        }
+        .card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 16px; padding: 24px; backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: flex; flex-direction: column; justify-content: space-between;
+            position: relative; overflow: hidden;
         }
-        .rule-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.5); }
-        .rule-card.danger-border { border-left: 5px solid var(--danger); }
-        .rule-card.warning-border { border-left: 5px solid var(--accent); }
-        .rule-card.info-border { border-left: 5px solid var(--info); }
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--accent-gold); opacity: 0.4; transition: 0.3s;
+        }
+        .card.danger::before { background: var(--danger); opacity: 0.8; }
+        .card.info::before { background: var(--info); opacity: 0.8; }
+        
+        .card:hover {
+            transform: translateY(-6px); background: var(--bg-card-hover);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+        }
+        .card:hover::before { opacity: 1; }
 
-        .rule-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
-        .penalty-badge { font-size: 0.7rem; padding: 3px 8px; border-radius: 6px; font-weight: 700; text-transform: uppercase; }
-        .penalty-badge.warning { background: rgba(243, 156, 18, 0.15); color: var(--accent); border: 1px solid var(--accent); }
-        .penalty-badge.danger { background: rgba(255, 71, 87, 0.15); color: var(--danger); border: 1px solid var(--danger); }
+        .card-header {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            margin-bottom: 12px; gap: 10px;
+        }
+        .card-title { font-size: 1.15rem; font-weight: 800; line-height: 1.3; }
+        
+        .tag {
+            font-size: 0.68rem; font-weight: 800; padding: 4px 10px;
+            border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+        .tag.warning { background: rgba(255, 183, 3, 0.12); color: var(--accent-gold); border: 1px solid var(--accent-gold); }
+        .tag.danger { background: rgba(255, 71, 87, 0.12); color: var(--danger); border: 1px solid var(--danger); }
+        .tag.info { background: rgba(0, 242, 254, 0.12); color: var(--info); border: 1px solid var(--info); }
 
-        /* Bans */
-        .bans-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin-top: 15px; }
-        .ban-item {
-            background: rgba(255, 71, 87, 0.08); border: 1px solid rgba(255, 71, 87, 0.25);
-            border-radius: 8px; padding: 10px; font-weight: 600; color: #ff8080; font-size: 0.85rem; text-align: center;
+        .card-body { color: var(--text-secondary); font-size: 0.92rem; }
+        .card-body strong { color: #fff; font-weight: 700; }
+
+        /* Ban Grid */
+        .bans-container {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px;
+        }
+        .ban-card {
+            background: rgba(255, 71, 87, 0.05); border: 1px solid rgba(255, 71, 87, 0.2);
+            border-radius: 12px; padding: 14px; text-align: center;
+            font-weight: 800; color: #ff6b81; font-size: 0.9rem;
+            transition: 0.25s ease;
+        }
+        .ban-card:hover {
+            background: rgba(255, 71, 87, 0.15); border-color: var(--danger);
+            transform: scale(1.03); box-shadow: 0 0 15px var(--danger-glow);
         }
 
-        #scrollTopBtn {
-            position: fixed; bottom: 20px; right: 20px; background: var(--accent);
-            color: #000; border: none; width: 45px; height: 45px; border-radius: 50%;
-            cursor: pointer; display: none; align-items: center; justify-content: center;
-            font-weight: 900; z-index: 999; box-shadow: 0 4px 15px var(--accent-glow);
+        /* Scroll Top Button */
+        #scrollTop {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 50px; height: 50px; background: var(--accent-gold);
+            color: #000; border: none; border-radius: 14px; cursor: pointer;
+            display: none; align-items: center; justify-content: center;
+            font-weight: 900; font-size: 1.2rem; z-index: 999;
+            box-shadow: 0 6px 20px var(--accent-gold-glow); transition: 0.3s;
         }
+        #scrollTop:hover { transform: scale(1.1); }
 
-        footer { text-align: center; padding: 25px; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.85rem; }
+        footer {
+            text-align: center; padding: 35px 20px;
+            border-top: 1px solid var(--border); color: var(--text-secondary);
+            font-size: 0.85rem; font-weight: 600;
+        }
+        footer span { color: var(--accent-gold); }
     </style>
 </head>
 <body>
 
-    <!-- Прелоадер на 3 секунды -->
+    <!-- 3-Second Loading Screen -->
     <div id="loader">
-        <div class="spinner"></div>
-        <h2 style="font-family:'Teko'; letter-spacing:2px; color:var(--accent);">U.C.L RULES LOADING...</h2>
+        <div class="loader-ring"></div>
+        <div class="loader-title">U.C.L ARENA LOADING...</div>
     </div>
 
+    <!-- Scroll Progress -->
     <div id="progress-bar"></div>
 
+    <!-- Header Section -->
     <header>
-        <div class="hero-container">
+        <div class="status-bar-wrapper">
             <div class="status-radar">
                 <div id="radarDot" class="radar-dot"></div>
-                <span id="radarStatusText" style="font-size:0.85rem; font-weight:700;">Проверка лиги...</span>
+                <span id="radarText" class="radar-text">Синхронизация МСК...</span>
             </div>
+        </div>
 
-            <div class="logo-badge">Official Regulations</div>
-            <h1>Правила боёв <span>U.C.L</span></h1>
-            
-            <div class="search-wrapper">
-                <input type="text" id="searchInput" class="search-input" placeholder="Поиск по регламенту (багоюз, ПД, слоу клики...)" oninput="handleSearch()">
-            </div>
+        <div class="badge-main">Official Regulations 2026</div>
+        <h1>Регламент боёв <span>U.C.L</span></h1>
 
-            <div class="nav-tabs">
-                <a href="#pd" class="nav-tab">1. Пассив / ПД</a>
-                <a href="#bugs" class="nav-tab">2. Багоюз</a>
-                <a href="#combos" class="nav-tab">3. Медленные M1</a>
-                <a href="#skating" class="nav-tab">4. С-кейтинг</a>
-                <a href="#dd" class="nav-tab">5. Дабл деш</a>
-                <a href="#audio" class="nav-tab">6. Звуки / Картинки</a>
-                <a href="#title" class="nav-tab">7. Титульные бои</a>
-                <a href="#combat" class="nav-tab">8. Регламент</a>
-                <a href="#bans" class="nav-tab">9. Бан стили</a>
-            </div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Поиск по регламенту (ПД, слоу клик, баги, деш...)" oninput="filterRules()">
+        </div>
+
+        <div class="nav-scroller">
+            <a href="#pd" class="nav-btn">1. Пассив / ПД</a>
+            <a href="#bugs" class="nav-btn">2. Багоюз</a>
+            <a href="#combos" class="nav-btn">3. Медленные M1</a>
+            <a href="#skating" class="nav-btn">4. С-кейтинг</a>
+            <a href="#dd" class="nav-btn">5. Дабл деш</a>
+            <a href="#audio" class="nav-btn">6. Звуки / Картинки</a>
+            <a href="#title" class="nav-btn">7. Титульные бои</a>
+            <a href="#combat" class="nav-btn">8. Общий регламент</a>
+            <a href="#bans" class="nav-btn">9. Бан стили</a>
         </div>
     </header>
 
     <main class="container">
 
+        <!-- 1. PASSIVE & PD -->
         <section id="pd">
-            <div class="section-header"><h2>1. Пассив и ПД Фишинг</h2></div>
-            <div class="rules-grid">
-                <div class="rule-card warning-border searchable">
-                    <div class="rule-title">Суть ПД Фишинга <span class="penalty-badge warning">Ограничение</span></div>
-                    <div class="rule-desc">Игрок намеренно прекращает бить/взаимодействовать для идеального уклонения. Разрешено сделать два уклона подряд только при стагеринге или под спам-комбо (особенно против медленных стилей). ПД-фиш разрешен, только если стамина бойца **ПОЛНОСТЬЮ на нуле**.</div>
-                </div>
-                <div class="rule-card warning-border searchable">
-                    <div class="rule-title">Таймер порога (2.5 сек) <span class="penalty-badge warning">Фол за абуз</span></div>
-                    <div class="rule-desc">Ждать удара можно максимум **2.5 секунды**. Незначительный выход — устное предупреждение, систематический злоупотребление — фол. Правило действует и на Демпси ролл. Использование эмоций = бездействие (кроме начала раунда). ПД-фиш 3+ раз первым дает фол даже внутри 2.5 сек.</div>
-                </div>
-                <div class="rule-card warning-border searchable">
-                    <div class="rule-title">Сброс таймера и ульта <span class="penalty-badge danger">2 Фола</span></div>
-                    <div class="rule-desc">Попытка удара, контрудар, атаки и способности, возвращающие бойцов в нейтрал, **сбрасывают 2.5-сек таймер**. Пассив или ПД-фиш в конце боя ради нанесения ультимейта караются **2 фолами**.</div>
-                </div>
+            <div class="section-title">
+                <div class="icon-box"></div>
+                <h2>1. Пассив и ПД Фишинг</h2>
             </div>
-        </section>
-
-        <section id="bugs">
-            <div class="section-header"><h2>2. Багоюз</h2></div>
-            <div class="rules-grid">
-                <div class="rule-card danger-border searchable">
-                    <div class="rule-title">Парирование ульты <span class="penalty-badge danger">Дисквалификация</span></div>
-                    <div class="rule-desc">Намеренный блок в тайминг при полете ультимейта, из-за чего ульта «сжирается» без урона. Намеренное использование влечет вылет из лиги.</div>
+            <div class="grid-cards">
+                <div class="card searchable">
+                    <div class="card-header">
+                        <div class="card-title">Суть ПД Фишинга</div>
+                        <span class="tag warning">Ограничение</span>
+                    </div>
+                    <div class="card-body">
+                        Намеренный отказ от действий ради уклонения. Разрешено делать <strong>2 уклона подряд</strong> только при стаггеринге или под спам-комбо. ПД-фиш разрешен только при <strong>нулевой стамине</strong>.
+                    </div>
                 </div>
-                <div class="rule-card warning-border searchable">
-                    <div class="rule-title">Нелегальный стаггеринг <span class="penalty-badge warning">Предупреждение ➔ Фол</span></div>
-                    <div class="rule-desc">Удар M1 задерживается в серии, становится неуклоняемым и притягивает игрока обратно. Обычный стаггеринг (M1 для смены темпа/миксапов) полностью разрешен. Первое нарушение — устное предупреждение, далее — фол.</div>
+                <div class="card searchable">
+                    <div class="card-header">
+                        <div class="card-title">Порог ожидания (2.5 сек)</div>
+                        <span class="tag warning">Фол за абуз</span>
+                    </div>
+                    <div class="card-body">
+                        Максимум ожидания — <strong>2.5 секунды</strong>. Незначительный выход — предупреждение, системность — фол. Распространяется на Dempsey Roll. Эмоции во время боя запрещены. ПД-фиш 3+ раз первым — фол.
+                    </div>
                 </div>
-            </div>
-        </section>
-
-        <section id="combos">
-            <div class="section-header"><h2>3. Медленные комбо М1 (Слоу клики)</h2></div>
-            <div class="rules-grid">
-                <div class="rule-card warning-border searchable">
-                    <div class="rule-title">Лимит использования <span class="penalty-badge warning">Макс 1 серия</span></div>
-                    <div class="rule-desc">Слоу клики разрешены **только после попадания под вражеский ультимейт**. Запрещено использовать после способностей (Focus, Stampede и др.). Разрешено использовать только для **ОДНОЙ СЕРИИ УДАРОВ**.</div>
-                </div>
-                <div class="rule-card info-border searchable">
-                    <div class="rule-title">Исключения стилей <span class="penalty-badge warning">Особые правила</span></div>
-                    <div class="rule-desc">Стилю **Крюк** запрещено делать слоу клики даже после ульты. После ультимейта **Айрон Фиста** разрешено делать **ДВА КОМБО** слоу клика.</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="skating">
-            <div class="section-header"><h2>4. С-кейтинг и бекдеши</h2></div>
-            <div class="rules-grid">
-                <div class="rule-card warning-border searchable">
-                    <div class="rule-title">Правила ухода назад <span class="penalty-badge warning">Фол</span></div>
-                    <div class="rule-desc">С-кейтинг (уход назад на S / джойстик назад) разрешен только после попадания удара/комбо по сопернику. Если идете назад, ничего не делая и пропуская 2 действия врага — **фол** (аналогично для бекдеша). Против Демпси фишить можно, а С-кейтить нельзя. Против Шотгана бекдеш на способность разрешен всегда.</div>
-                </div>
-                <div class="rule-card warning-border searchable">
-                    <div class="rule-title">Дополнительный 3-сек счет <span class="penalty-badge warning">Фол обоим</span></div>
-                    <div class="rule-desc">Если оба игрока намеренно держатся на дистанции, после порога 2.5 сек включается **3-секундный отсчет**. Если никто не сблизится — фол получают оба.</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="dd">
-            <div class="section-header"><h2>5. Дабл деш (ДД)</h2></div>
-            <div class="rules-grid">
-                <div class="rule-card danger-border searchable">
-                    <div class="rule-title">ДД для спидстеров <span class="penalty-badge danger">Запрещено (Фол)</span></div>
-                    <div class="rule-desc">Дабл деш подряд для уклона от финтов спидстерами строго запрещен — дается фол. Трипл деш запрещен полностью.</div>
-                </div>
-                <div class="rule-card info-border searchable">
-                    <div class="rule-title">Разрешенный Дабл Деш <span class="penalty-badge warning">После 2 атак</span></div>
-                    <div class="rule-desc">Два деша подряд официально разрешены исключительно **после совершения двух атак**.</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="audio">
-            <div class="section-header"><h2>6. Пользовательские звуки / изображения</h2></div>
-            <div class="rules-grid">
-                <div class="rule-card warning-border searchable">
-                    <div class="rule-title">Звуки ПД <span class="penalty-badge warning">На усмотрение</span></div>
-                    <div class="rule-desc">Кастомные звуки ПД разрешены, но судья может запросить их удаление, если они отвлекают соперника.</div>
-                </div>
-                <div class="rule-card danger-border searchable">
-                    <div class="rule-title">Каунтеры и картинки <span class="penalty-badge danger">Строгий Бан</span></div>
-                    <div class="rule-desc">Звуки контрударов (каунтер) и картинки **строго запрещены**. *Исключение:* звуки и картинки для ультимативных способностей (ульты) **разрешены**.</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="title">
-            <div class="section-header"><h2>7. Титульные бои</h2></div>
-            <div class="rules-grid">
-                <div class="rule-card info-border searchable">
-                    <div class="rule-title">Формат и Рефери <span class="penalty-badge warning">Bo3</span></div>
-                    <div class="rule-desc">Проводятся в формате **Bo3 (3 боя)**. Смена стиля возможна только после поражения. За боем наблюдают 3 рефери высшей категории (макс. 10 очков). Пассивный победитель с меньшим числом очков может проиграть по решению судей.</div>
-                </div>
-                <div class="rule-card info-border searchable">
-                    <div class="rule-title">Сроки защиты титулов <span class="penalty-badge warning">Регламент</span></div>
-                    <div class="rule-desc">
-                        • **UNF:** Каждую неделю<br>
-                        • **UNC:** Каждые 2 недели<br>
-                        • **UCL:** Каждые 2.5 недели
+                <div class="card danger searchable">
+                    <div class="card-header">
+                        <div class="card-title">Сброс таймера и ультимейт</div>
+                        <span class="tag danger">2 Фола</span>
+                    </div>
+                    <div class="card-body">
+                        Удары и способности в нейтрале <strong>сбрасывают таймер 2.5 сек</strong>. Пассив или ПД-фиш ради нанесения ульта в конце боя караются <strong>2 фолами</strong>.
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="combat">
-            <div class="section-header"><h2>8. Общий регламент боёв</h2></div>
-            <div class="rules-grid">
-                <div class="rule-card info-border searchable">
-                    <div class="rule-title">Вылеты и Судейство <span class="penalty-badge warning">5 минут</span></div>
-                    <div class="rule-desc">При вылете дается **5 минут** на возврат (иначе ТКО/аннулирование). Вердикт судьи на ринге не обсуждается, но предвзятое судейство жестко карается после проверки.</div>
+        <!-- 2. BUGS -->
+        <section id="bugs">
+            <div class="section-title">
+                <div class="icon-box"></div>
+                <h2>2. Запрещенный багоюз</h2>
+            </div>
+            <div class="grid-cards">
+                <div class="card danger searchable">
+                    <div class="card-header">
+                        <div class="card-title">Парирование ульты</div>
+                        <span class="tag danger">Дисквалификация</span>
+                    </div>
+                    <div class="card-body">
+                        Намеренный блок в тайминг при полете ультимейта с целью его «сжигания» без урона. Карается <strong>немедленным исключение из лиги</strong>.
+                    </div>
                 </div>
-                <div class="rule-card info-border searchable">
-                    <div class="rule-title">Лимиты и Ранги <span class="penalty-badge warning">Топ-5</span></div>
-                    <div class="rule-desc">Лимит: **не более 3 боев в сутки**. Для перехода в лигу выше нужен пояс и минимум 1 защита. Вызов чемпиону бросает **Топ-5**, а **Топ-1** имеет гарантированное право на бой.</div>
+                <div class="card searchable">
+                    <div class="card-header">
+                        <div class="card-title">Нелегальный стаггеринг</div>
+                        <span class="tag warning">Предупреждение ➔ Фол</span>
+                    </div>
+                    <div class="card-body">
+                        Задержка M1 в серии, сделающая удар неуклоняемым и притягивающая соперника. Обычный стаггеринг для смены темпа разрешен.
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- 3. SLOW CLICKS -->
+        <section id="combos">
+            <div class="section-title">
+                <div class="icon-box"></div>
+                <h2>3. Медленные комбо M1 (Слоу клики)</h2>
+            </div>
+            <div class="grid-cards">
+                <div class="card searchable">
+                    <div class="card-header">
+                        <div class="card-title">Условия использования</div>
+                        <span class="tag warning">Макс 1 серия</span>
+                    </div>
+                    <div class="card-body">
+                        Слоу клики разрешены <strong>только после попадания под ульт врага</strong>. Запрещены после обычных способностей. Разрешено проводить строго <strong>1 серию</strong>.
+                    </div>
+                </div>
+                <div class="card info searchable">
+                    <div class="card-header">
+                        <div class="card-title">Исключения стилей</div>
+                        <span class="tag info">Спец-правила</span>
+                    </div>
+                    <div class="card-body">
+                        Стилю <strong>Крюк</strong> слоу клики запрещены полностью. После ультимейта <strong>Айрон Фиста</strong> разрешено делать <strong>2 комбо</strong> подряд.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. S-KATING -->
+        <section id="skating">
+            <div class="section-title">
+                <div class="icon-box"></div>
+                <h2>4. С-кейтинг и бекдеши</h2>
+            </div>
+            <div class="grid-cards">
+                <div class="card searchable">
+                    <div class="card-header">
+                        <div class="card-title">Правила отхода назад</div>
+                        <span class="tag warning">Фол</span>
+                    </div>
+                    <div class="card-body">
+                        С-кейтинг (уход назад на S) разрешен только после собственного успешного удара/комбо. Пропуск 2 действий соперника при отступлении — <strong>фол</strong>.
+                    </div>
+                </div>
+                <div class="card searchable">
+                    <div class="card-header">
+                        <div class="card-title">Таймер дистанции</div>
+                        <span class="tag warning">Фол обоим</span>
+                    </div>
+                    <div class="card-body">
+                        Если оба игрока удерживают дистанцию сверх 2.5 сек, включается <strong>3-секундный отсчет</strong>. Отсутствие сближения — фол обоим бойцам.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. DOUBLE DASH -->
+        <section id="dd">
+            <div class="section-title">
+                <div class="icon-box"></div>
+                <h2>5. Дабл деш (ДД)</h2>
+            </div>
+            <div class="grid-cards">
+                <div class="card danger searchable">
+                    <div class="card-header">
+                        <div class="card-title">ДД для спидстеров</div>
+                        <span class="tag danger">Строго запрещено</span>
+                    </div>
+                    <div class="card-body">
+                        Двойной деш подряд для уклонения от финтов на скоростных стилях карается фолом. <strong>Трипл деш запрещен полностью</strong>.
+                    </div>
+                </div>
+                <div class="card info searchable">
+                    <div class="card-header">
+                        <div class="card-title">Разрешенный Дабл Деш</div>
+                        <span class="tag info">Условие</span>
+                    </div>
+                    <div class="card-body">
+                        Два деша подряд разрешено выполнять исключительно <strong>после совершения двух атак</strong>.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. AUDIO & MEDIA -->
+        <section id="audio">
+            <div class="section-title">
+                <div class="icon-box"></div>
+                <h2>6. Звуки и Изображения</h2>
+            </div>
+            <div class="grid-cards">
+                <div class="card searchable">
+                    <div class="card-header">
+                        <div class="card-title">Звуки Perfect Dodge</div>
+                        <span class="tag warning">По запросу</span>
+                    </div>
+                    <div class="card-body">
+                        Кастомные звуки ПД разрешены. Рефери имеет право потребовать их отключение при создании помех сопернику.
+                    </div>
+                </div>
+                <div class="card danger searchable">
+                    <div class="card-header">
+                        <div class="card-title">Каунтеры и Картинки</div>
+                        <span class="tag danger">Бан</span>
+                    </div>
+                    <div class="card-body">
+                        Звуки контрударов и визуальные картинки запрещены. <strong>Исключение:</strong> аудио и визуал для ультимативных способностей разрешены.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. TITLE FIGHTS -->
+        <section id="title">
+            <div class="section-title">
+                <div class="icon-box"></div>
+                <h2>7. Титульные Бои</h2>
+            </div>
+            <div class="grid-cards">
+                <div class="card info searchable">
+                    <div class="card-header">
+                        <div class="card-title">Регламент Bo3 и Судейство</div>
+                        <span class="tag info">Формат Bo3</span>
+                    </div>
+                    <div class="card-body">
+                        Бои проходят до 2 побед (Bo3). Смена стиля допускается только после поражения. Поединок оценивают 3 рефери высшей категории.
+                    </div>
+                </div>
+                <div class="card info searchable">
+                    <div class="card-header">
+                        <div class="card-title">Сроки защиты поясов</div>
+                        <span class="tag info">График</span>
+                    </div>
+                    <div class="card-body">
+                        • <strong>UNF:</strong> Защита раз в неделю<br>
+                        • <strong>UNC:</strong> Защита каждые 2 недели<br>
+                        • <strong>UCL:</strong> Защита каждые 2.5 недели
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. COMBAT RULES -->
+        <section id="combat">
+            <div class="section-title">
+                <div class="icon-box"></div>
+                <h2>8. Общие Правила Лиги</h2>
+            </div>
+            <div class="grid-cards">
+                <div class="card searchable">
+                    <div class="card-header">
+                        <div class="card-title">Технические проблемы</div>
+                        <span class="tag warning">5 минут</span>
+                    </div>
+                    <div class="card-body">
+                        При вылете бойцу дается ровно <strong>5 минут</strong> на перезаход. Превышение лимита — техническое поражение.
+                    </div>
+                </div>
+                <div class="card searchable">
+                    <div class="card-header">
+                        <div class="card-title">Ограничения боев</div>
+                        <span class="tag warning">Макс 3 в день</span>
+                    </div>
+                    <div class="card-body">
+                        Лимит: не более 3 официальных боев в сутки. Для претендентского боя необходим входящий в <strong>Топ-5</strong> рейтинг.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. BANNED STYLES -->
         <section id="bans">
-            <div class="section-header"><h2>9. Бан стили (Запрещены)</h2></div>
-            <div class="bans-grid">
-                <div class="ban-item searchable">Slugger</div>
-                <div class="ban-item searchable">Hawk</div>
-                <div class="ban-item searchable">Hammer</div>
-                <div class="ban-item searchable">Dragonfish</div>
-                <div class="ban-item searchable">White Ash</div>
-                <div class="ban-item searchable">Wolf</div>
-                <div class="ban-item searchable">Hitman</div>
-                <div class="ban-item searchable">Shotgun</div>
-                <div class="ban-item searchable">Corkscrew</div>
-                <div class="ban-item searchable">Bullet</div>
-                <div class="ban-item searchable">Chronos</div>
-                <div class="ban-item searchable">All Shinies + Exclusive Styles</div>
+            <div class="section-title">
+                <div class="icon-box"></div>
+                <h2>9. Запрещенные Стили (Banned)</h2>
+            </div>
+            <div class="bans-container">
+                <div class="ban-card searchable">Slugger</div>
+                <div class="ban-card searchable">Hawk</div>
+                <div class="ban-card searchable">Hammer</div>
+                <div class="ban-card searchable">Dragonfish</div>
+                <div class="ban-card searchable">White Ash</div>
+                <div class="ban-card searchable">Wolf</div>
+                <div class="ban-card searchable">Hitman</div>
+                <div class="ban-card searchable">Shotgun</div>
+                <div class="ban-card searchable">Corkscrew</div>
+                <div class="ban-card searchable">Bullet</div>
+                <div class="ban-card searchable">Chronos</div>
+                <div class="ban-card searchable">All Shiny Versions</div>
+                <div class="ban-card searchable">Exclusive Styles</div>
             </div>
         </section>
 
     </main>
 
-    <button id="scrollTopBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+    <button id="scrollTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 
     <footer>
-        <p>Официальный регламент соревновательной лиги <span>U.C.L</span></p>
+        <p>Ultimate Championship League &copy; 2026. Все права защищены. <span>U.C.L Arena</span></p>
     </footer>
 
     <script>
-        // Прелоадер ровно 3 секунды
+        // Preloader 3s
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const loader = document.getElementById('loader');
@@ -367,46 +564,48 @@
             }, 3000);
         });
 
-        // Радар работы лиги (12:00 - 22:00 МСК)
-        function checkLeagueStatus() {
+        // MSK Time status radar
+        function updateLeagueRadar() {
             const now = new Date();
-            // Перевод в UTC, затем в МСК (UTC+3)
             const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-            const mskTime = new Date(utc + (3600000 * 3));
-            
-            const hours = mskTime.getHours();
+            const msk = new Date(utc + (3600000 * 3));
+            const hours = msk.getHours();
+
             const dot = document.getElementById('radarDot');
-            const text = document.getElementById('radarStatusText');
+            const text = document.getElementById('radarText');
 
             if (hours >= 12 && hours < 22) {
                 dot.className = 'radar-dot open';
-                text.innerHTML = 'ЛИГА ОТКРЫТА (12:00 - 22:00 МСК)';
+                text.textContent = 'Лига открыта (12:00 - 22:00 МСК)';
                 text.style.color = 'var(--success)';
             } else {
                 dot.className = 'radar-dot closed';
-                text.innerHTML = 'ЛИГА ЗАКРЫТА (Открытие в 12:00 МСК)';
+                text.textContent = 'Лига закрыта (Открытие в 12:00 МСК)';
                 text.style.color = 'var(--danger)';
             }
         }
-        checkLeagueStatus();
-        setInterval(checkLeagueStatus, 30000);
+        updateLeagueRadar();
+        setInterval(updateLeagueRadar, 30000);
 
-        // Поиск по сайту
-        function handleSearch() {
-            let val = document.getElementById('searchInput').value.toLowerCase();
-            let cards = document.querySelectorAll('.searchable');
+        // Search Filter
+        function filterRules() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.searchable');
             cards.forEach(card => {
-                let text = card.innerText.toLowerCase();
-                card.style.display = text.includes(val) ? "" : "none";
+                const content = card.textContent.toLowerCase();
+                card.style.display = content.includes(query) ? 'flex' : 'none';
             });
         }
 
-        // Прогресс бар и кнопка наверх
-        window.onscroll = function() {
-            let winScroll = document.documentElement.scrollTop;
-            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            document.getElementById("progress-bar").style.width = (winScroll / height) * 100 + "%";
-            document.getElementById("scrollTopBtn").style.display = winScroll > 300 ? "flex" : "none";
+        // Scroll events
+        window.onscroll = () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            document.getElementById('progress-bar').style.width = progress + '%';
+            
+            const btn = document.getElementById('scrollTop');
+            btn.style.display = scrollTop > 400 ? 'flex' : 'none';
         };
     </script>
 </body>

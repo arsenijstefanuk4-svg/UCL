@@ -1,4 +1,3 @@
-
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -43,7 +42,7 @@
             box-shadow: 0 0 12px var(--gold);
         }
 
-        /* 5-секундный прелоадер с анимацией перчаток и груши */
+        /* 5-секундный прелоадер */
         #loader {
             position: fixed; inset: 0; background: #020203;
             z-index: 99999; display: flex; flex-direction: column;
@@ -110,17 +109,31 @@
             font-size: 0.9rem; color: var(--text-sub); margin-top: 5px; font-weight: 700;
         }
 
+        /* Исправленная и ярко выраженная бегущая строка */
         .marquee-wrapper {
-            background: linear-gradient(90deg, #111, var(--red), var(--gold), #111);
-            color: #fff; font-weight: 900; font-size: 0.75rem;
-            text-transform: uppercase; letter-spacing: 1.5px;
-            padding: 8px 0; overflow: hidden; white-space: nowrap;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.8);
+            background: linear-gradient(90deg, #100003, var(--red), var(--gold), #100003);
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 12px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--gold);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.9);
         }
-        .marquee-content { display: inline-block; animation: marquee 18s linear infinite; }
+        .marquee-content { 
+            display: inline-block; 
+            animation: marquee 16s linear infinite;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+        }
         @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
 
-        .status-container { display: flex; justify-content: center; margin-top: 20px; }
+        .status-container { display: flex; justify-content: center; margin-top: 25px; }
         .status-badge {
             display: flex; align-items: center; gap: 10px;
             background: rgba(15, 18, 32, 0.85); border: 1px solid var(--gold);

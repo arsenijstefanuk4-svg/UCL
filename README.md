@@ -109,7 +109,7 @@
             font-size: 0.9rem; color: var(--text-sub); margin-top: 5px; font-weight: 700;
         }
 
-        /* Исправленная и ярко выраженная бегущая строка */
+        /* Полноширинная зацикленная бегущая строка по центру */
         .marquee-wrapper {
             background: linear-gradient(90deg, #100003, var(--red), var(--gold), #100003);
             color: #ffffff;
@@ -120,18 +120,31 @@
             padding: 12px 0;
             overflow: hidden;
             white-space: nowrap;
-            width: 100%;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
-            align-items: center;
             border-bottom: 1px solid var(--gold);
             box-shadow: 0 4px 20px rgba(0,0,0,0.9);
         }
+
         .marquee-content { 
-            display: inline-block; 
-            animation: marquee 16s linear infinite;
+            display: flex;
+            flex-shrink: 0;
+            white-space: nowrap;
+            animation: marquee 14s linear infinite;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
         }
-        @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+
+        .marquee-item {
+            padding-right: 50px;
+        }
+
+        @keyframes marquee { 
+            0% { transform: translateX(0%); } 
+            100% { transform: translateX(-50%); } 
+        }
 
         .status-container { display: flex; justify-content: center; margin-top: 25px; }
         .status-badge {
@@ -290,7 +303,8 @@
 
     <div class="marquee-wrapper">
         <div class="marquee-content">
-            ⚡ ПРАВИЛА БОЁВ U.C.L • ОФИЦИАЛЬНЫЙ РЕГЛАМЕНТ • СОБЛЮДАЙТЕ ПРАВИЛА ЛИГИ • ⚡
+            <span class="marquee-item">⚡ ПРАВИЛА БОЁВ U.C.L • ОФИЦИАЛЬНЫЙ РЕГЛАМЕНТ • СОБЛЮДАЙТЕ ПРАВИЛА ЛИГИ • ⚡</span>
+            <span class="marquee-item">⚡ ПРАВИЛА БОЁВ U.C.L • ОФИЦИАЛЬНЫЙ РЕГЛАМЕНТ • СОБЛЮДАЙТЕ ПРАВИЛА ЛИГИ • ⚡</span>
         </div>
     </div>
 
@@ -665,7 +679,6 @@
     </footer>
 
     <script>
-        // Ровно 5 секунд таймер загрузки
         let timeLeft = 5;
         const timerElement = document.getElementById('loadTimer');
         

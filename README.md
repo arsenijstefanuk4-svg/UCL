@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>U.C.L — Ultimate Championship League Arena</title>
+    <title>U.C.L — Untitled CIS league Arena</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Teko:wght@600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -317,7 +317,7 @@
         </div>
 
         <div style="margin-top:20px;">
-            <div class="main-badge">Ultimate Championship League</div>
+            <div class="main-badge">Untitled CIS league</div>
             <h1>Правила боёв <span>U.C.L</span></h1>
         </div>
 

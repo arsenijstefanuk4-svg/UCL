@@ -758,7 +758,6 @@
                 <div class="ban-box searchable">hawk</div>
                 <div class="ban-box searchable">hammer</div>
                 <div class="ban-box searchable">switch hit (не может отменять ульту)</div>
-                <div class="ban-box searchable">dragonfish</div>
                 <div class="ban-box searchable">white ash</div>
                 <div class="ban-box searchable">wolf</div>
                 <div class="ban-box searchable">shotgun</div>
